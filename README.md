@@ -12,3 +12,6 @@
 
 ## Проект на Netlify: 
 [Проект на Netlify](https://monumental-dusk-47c34b.netlify.app)
+
+## Проект в Figma
+[Проект в Figma](https://www.figma.com/file/Vz7Va8ctSfNOXa41E8AyGc/Untitled?node-id=0%3A1&t=2Q1shLEK4BiX4xSi-1)
