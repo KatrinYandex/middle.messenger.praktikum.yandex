@@ -1,0 +1,103 @@
+@import "../variables";
+
+.dialog-item {
+  @extend .flex;
+  margin: auto;
+  padding: 20px;
+  flex-direction: row;
+
+  border-bottom: 1px solid $primary_color;
+
+  &__photo {
+    height: 50px;
+    width: 50px;
+
+    border-radius: 25px;
+    background: gray;
+  }
+
+  &__info {
+    @extend .flex;
+    flex-direction: column;
+    width: 85%;
+  }
+
+  &:hover {
+    background: $primary_dark_light;
+  }
+}
+
+.text {
+  color: $primary_color;
+  font-family: Inter, serif;
+}
+
+.text_dark {
+  color: black;
+  opacity: 0.7;
+  font-family: Inter, serif;
+}
+
+.text_light {
+  color: white;
+  font-family: Inter, serif;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info {
+  &__data, &__message {
+    @extend .flex;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.data {
+  &__name {
+    width: 80%;
+    @extend .text;
+    font-size: 20px;
+  }
+
+  &__date {
+    @extend .text;
+    font-size: 20px;
+  }
+}
+
+.message {
+  &__text {
+    width: 80%;
+    @extend .text_dark;
+    font-size: 18px;
+  }
+
+  &__count {
+    &-1{
+      @extend .text_light;
+      @extend .flex;
+      font-size: 18px;
+
+      height: 20px;
+      width: max-content;
+      min-width: 10px;
+      padding: 0 5px;
+      border-radius: 10px;
+      background: $primary_color;
+      flex-direction: column;
+    }
+    &-0 {
+      color: rgb(0,0,0,0);
+    }
+  }
+}
+
+.data__name, .data__date {
+  @extend .text;
+  font-size: 20px;
+}

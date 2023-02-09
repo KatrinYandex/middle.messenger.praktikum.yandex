@@ -1,0 +1,19 @@
+<div class="entrance-view">
+    <div class="entrance-view__form entrance-view__form_border">
+        <div class="form__enter-text">Войти</div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Логин</label>
+            </div>
+            <input class="form__input" name="login" placeholder="Введите логин">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Пароль </label>
+            </div>
+            <input class="form__input" name="password" type="password" placeholder="Введите пароль">
+        </div>
+        {{> button class="button-green button-filled" label="Войти" onclick="goToPage('messenger', {name: 'Виталий Юрьев', label: 'Выберите диалог'})" }}
+        {{> button class="button-white button-empty" label="Зарегестрироваться" onclick="goToPage('registration', {})" }}
+    </div>
+</div>

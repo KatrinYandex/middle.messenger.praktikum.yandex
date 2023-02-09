@@ -1,0 +1,12 @@
+@import "../variables.scss";
+
+.date-message {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+
+  font-family: Inter, serif;
+  color: $primary_color;
+  font-size: 26px;
+}

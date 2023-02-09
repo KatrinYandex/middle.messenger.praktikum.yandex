@@ -1,0 +1,49 @@
+<div class="registration-view">
+    <div class="registration-view__form registration-view__form_border">
+        <div class="form__registration-text">Регистрация</div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Почта </label>
+            </div>
+            <input class="form__input" name="email" placeholder="Введите почту">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Логин</label>
+            </div>
+            <input class="form__input" name="login" placeholder="Введите логин">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Имя</label>
+            </div>
+            <input class="form__input" name="first_name" placeholder="Введите имя">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Фамилия</label>
+            </div>
+            <input class="form__input" name="second_name" placeholder="Введите фамилию">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Телефон</label>
+            </div>
+            <input class="form__input" name="phone" placeholder="Введите телефон">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Пароль</label>
+            </div>
+            <input class="form__input" name="password" type="password" placeholder="Введите пароль">
+        </div>
+        <div class="form__item">
+            <div>
+                <label class="form__label">Пароль (еще раз)</label>
+            </div>
+            <input class="form__input" name="password2" type="password" placeholder="Введите пароль еще раз">
+        </div>
+        {{> button class="button-green button-filled" label="Зарегестрироваться" onclick="goToPage('messenger', {name: 'Виталий Юрьев', label: 'Выберите диалог'})" }}
+        {{> button class="button-white button-empty" label="Войти"  onclick="goToPage('login', {})" }}
+    </div>
+</div>

@@ -1,0 +1,36 @@
+@import '../variables.scss';
+
+.text {
+  color: $primary_color;
+  font-family: Inter, serif;
+}
+
+.error-box {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.error-50x {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &-code {
+    @extend .text;
+    font-size: 36px;
+    margin: 10px;
+    text-align: center;
+  }
+}
+
+.message-50x {
+  @extend .text;
+  font-size: 30px;
+  margin: 10px;
+  text-align: center;
+}
