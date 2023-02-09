@@ -1,3 +1,6 @@
+Ссылка на PR:
+[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/3)
+
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
