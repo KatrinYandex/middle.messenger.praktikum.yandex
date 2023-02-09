@@ -1,0 +1,33 @@
+<div class="profile-view">
+    <div class="profile-view__box">
+        <div class="form__photo">{{ img }}</div>
+        <div class="form__name">{{ name }}</div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Почта</div>
+            <div class="form__item__data">{{ email }}</div>
+        </div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Логин</div>
+            <div class="form__item__data">{{ login }}</div>
+        </div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Имя</div>
+            <div class="form__item__data">{{ first_name }}</div>
+        </div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Фамилия</div>
+            <div class="form__item__data">{{ second_name }}</div>
+        </div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Имя в чате</div>
+            <div class="form__item__data">{{ nick_name }}</div>
+        </div>
+        <div class="form__item-profile">
+            <div class="form__item__label">Телефон</div>
+            <div class="form__item__data">{{ phone }}</div>
+        </div>
+        {{> button class="button-green button-filled-bordered" label="Изменить данные" onclick="goToPage('change_data', {})" }}
+        {{> button class="button-green button-filled-bordered" label="Изменить пароль" onclick="goToPage('change_password', {})" }}
+        {{> button class="button-white button-empty-bordered" label="Выйти" onclick="goToPage('registration', {})" }}
+    </div>
+</div>

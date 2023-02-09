@@ -1,0 +1,12 @@
+@use 'entrance/entrance-view';
+@use 'registration/registration-view';
+@use 'messenger/messenger-view';
+@use 'errors/error-50x';
+@use 'errors/error-40x';
+@use 'profile/profile-view';
+@use 'profile/change-data';
+@use 'profile/change-password';
+
+body {
+  margin: 0;
+}
