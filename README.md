@@ -7,8 +7,12 @@
 - 
 ## Установка и запуск
 
-- `npm run build && node server.js` — запуск последней версии,
-- `parcel index.html` — запуск версии для разработчика.
+- `npm run start` — билд и запуск последней версии на стандартном порту (3000),
+- `npm run start -- --port 4000` — билд и запуск последней версии на заданном порту (пример для 4000), 
+- `npm run dev` — запуск версии для разработчика.
 
 ## Проект на Netlify: 
-[Проект на Netlify](https://monumental-dusk-47c34b.netlify.app)
+[Проект на Netlify](https://delicate-naiad-936165.netlify.app)
+
+## Проект в Figma
+[Проект в Figma](https://www.figma.com/file/Vz7Va8ctSfNOXa41E8AyGc/Untitled?node-id=0%3A1&t=2Q1shLEK4BiX4xSi-1)
