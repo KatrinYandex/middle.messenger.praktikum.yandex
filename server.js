@@ -13,4 +13,3 @@ open("http://localhost:" + PORT);
 app.listen(PORT, function () {
     console.log(`Messenger is listening on port ${PORT}!`);
 });
-

@@ -56,11 +56,11 @@ window.openSettings = function (id) {
 function renderError(code) {
     if (code === 500) {
         return error_50x({code: code});
-    }
-    else {
+    } else {
         return error_40x({code: code});
     }
 }
+
 window.addEventListener("DOMContentLoaded", () => {
     register();
 
