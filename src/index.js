@@ -1,13 +1,13 @@
-import login from "./entrance/entrance-view.hbs";
-import registration from "./registration/registration-view.hbs";
-import messenger from "./messenger/messenger-view.hbs";
-import dialog from "./messenger/dialod.hbs";
-import profile_view from "./profile/profile-view.hbs";
-import change_data from "./profile/change-data.hbs";
-import change_password from "./profile/change-password.hbs";
-import error_50x from "./errors/error-50x.hbs";
-import error_40x from "./errors/error-40x.hbs";
-import chat_settings from "./messenger/chat-settings.hbs";
+import login from "./pages/entrance/entrance-view.hbs";
+import registration from "./pages/registration/registration-view.hbs";
+import messenger from "./pages/messenger/messenger-view.hbs";
+import dialog from "./pages/messenger/modules/dialod.hbs";
+import profile_view from "./pages/profile/profile-view.hbs";
+import change_data from "./pages/profile/modules/change-data.hbs";
+import change_password from "./pages/profile/modules/change-password.hbs";
+import error_50x from "./pages/errors/error-50x.hbs";
+import error_40x from "./pages/errors/error-40x.hbs";
+import chat_settings from "./pages/messenger/modules/chat-settings.hbs";
 import register from "./register";
 import "./style.scss";
 
@@ -71,4 +71,3 @@ window.addEventListener("DOMContentLoaded", () => {
 
     render(html, "main");
 })
-
