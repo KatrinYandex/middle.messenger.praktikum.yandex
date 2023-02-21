@@ -1,0 +1,67 @@
+@use '../../../components/member.scss';
+@import '../../../variables.scss';
+
+.text {
+  color: $primary_color;
+  font-family: Inter, serif;
+}
+
+.chat-settings {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__box {
+    width: 50%;
+    min-height: 300px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 2px solid $primary_color;
+  }
+
+  &__info {
+    width: 100%;
+    margin: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 20px;
+  }
+
+  &__photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: gray;
+  }
+
+  &__name {
+    height: 40px;
+    font-size: 30px;
+    border: 0 none #ccc;
+    border-bottom: 1px solid $primary_color;
+  }
+}
+
+.add-new-member {
+  width: 99%;
+  height: 35px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid $primary_color;
+}
+
+.member-box:last-of-type {
+  margin-bottom: 30px;
+}

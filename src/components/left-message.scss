@@ -1,0 +1,38 @@
+@import "../variables.scss";
+
+.left-message {
+  width: 100%;
+  height: max-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: end;
+  }
+
+  &__time {
+    font-family: Inter, serif;
+    color: rgb(0, 0, 0, 0.8);
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  &__text {
+    background: $primary_light;
+    border-radius: 10px;
+    flex-wrap: wrap;
+
+    padding: 10px;
+    width: max-content;
+    max-width: 400px;
+    margin-left: 20px;
+    margin-right: 10px;
+
+    font-family: Inter, serif;
+    color: rgb(0, 0, 0, 0.8);
+    font-size: 24px;
+  }
+}
