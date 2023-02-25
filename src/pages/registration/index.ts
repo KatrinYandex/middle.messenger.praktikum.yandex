@@ -32,10 +32,10 @@ export class Registration extends Component {
 
                     const entrance = new Entrance();
                     const element = document.querySelector("#main");
-                    while (element.firstChild) {
-                        element.removeChild(element.firstChild);
+                    while (element!.firstChild) {
+                        element!.removeChild(element!.firstChild);
                     }
-                    element.appendChild(entrance.element);
+                    element!.appendChild(entrance.element);
                 }
             }
         })
@@ -45,7 +45,7 @@ export class Registration extends Component {
             class: 'button-green button-filled',
             events: {
                 click: (event) => {
-                    event.preventDefault();
+                    event!.preventDefault();
                     const email = that.children.emailInput;
                     const login = that.children.loginInput;
                     const firstName = that.children.firstNameInput;
@@ -71,10 +71,10 @@ export class Registration extends Component {
                         })
 
                         const element = document.querySelector("#main");
-                        while (element.firstChild) {
-                            element.removeChild(element.firstChild);
+                        while (element!.firstChild) {
+                            element!.removeChild(element!.firstChild);
                         }
-                        element.appendChild(dialog.element);
+                        element!.appendChild(dialog.element);
 
                         console.log(login.inputValue, email.inputValue, firstName.inputValue, secondName.inputValue,
                             phone.inputValue, password.inputValue, passwordAgain.inputValue);

@@ -20,28 +20,28 @@ function openDialog(dialogName: string): void {
     })
     console.log(dialog)
     const element = document.querySelector("#dialog-space");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(dialog.element)
+    element!.appendChild(dialog.element)
 }
 
 function openSettings(chatName: string): void {
     const settings = new ChatSettings({name: chatName})
     const element = document.querySelector("#dialog-space");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(settings.element)
+    element!.appendChild(settings.element)
 }
 
 function openProfile(data: ProfileData): void {
     const profile = new Profile(data);
     const element = document.querySelector("#main");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(profile.element)
+    element!.appendChild(profile.element)
 }
 
 export class DialogPage extends Component {

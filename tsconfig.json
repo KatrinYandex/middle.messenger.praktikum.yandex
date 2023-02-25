@@ -7,6 +7,11 @@
       "dom"
     ],
     "moduleResolution":"node",
-    "module": "commonjs"
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true
   }
 }

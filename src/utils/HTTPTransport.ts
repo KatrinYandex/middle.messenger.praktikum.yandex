@@ -15,6 +15,7 @@ function queryStringify(data: any): string {
     console.log(props.slice(0, -1))
     return props.slice(0, -1)
   }
+  else return ''
 }
 
 class HTTPTransport {
@@ -35,30 +36,30 @@ class HTTPTransport {
     };
 
     request = (url: string, options: any, timeout: number = 5000) => {
-      const {data, headers} = options;
-      return new Promise((resolve: (value: unknown) => void, reject: (value: unknown) => void) => {
-        const xhr = new XMLHttpRequest();
-        if (headers) {
-          Object.keys(headers).forEach((key) => {
-            xhr.setRequestHeader(`${key}`, headers[key]);
-          })
-        }
-        if (data && options.method === METHODS.GET) {
-          const dataSend = queryStringify(data)
-          xhr.open(options.method, url + dataSend);
-        }
-        else {
-          xhr.open(options.method, url);
-        }
+        console.log(timeout)
+        const {data, headers} = options;
+        return new Promise((resolve: (value: unknown) => void, reject: (value: unknown) => void) => {
+            const xhr = new XMLHttpRequest();
+            if (headers) {
+                Object.keys(headers).forEach((key) => {
+                    xhr.setRequestHeader(`${key}`, headers[key]);
+                })
+            }
+            if (data && options.method === METHODS.GET) {
+                const dataSend = queryStringify(data)
+                xhr.open(options.method, url + dataSend);
+            } else {
+                xhr.open(options.method, url);
+            }
 
-        xhr.onload = function(): void {
-          resolve(xhr);
-        };
+            xhr.onload = function (): void {
+                resolve(xhr);
+            };
 
-        xhr.timeout = options.timeout;
-        xhr.onabort = reject;
-        xhr.onerror = reject;
-        xhr.ontimeout = reject;
+            xhr.timeout = options.timeout;
+            xhr.onabort = reject;
+            xhr.onerror = reject;
+            xhr.ontimeout = reject;
 
         if (options.method === METHODS.GET || !data) {
           xhr.send();

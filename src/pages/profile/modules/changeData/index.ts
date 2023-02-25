@@ -28,7 +28,7 @@ export class ChangeData extends Component {
             class: 'button-green button-filled-bordered',
             events: {
                 click: (event) => {
-                    event.preventDefault();
+                    event!.preventDefault();
 
                     const email = that.children.emailInput;
                     const login = that.children.loginInput;

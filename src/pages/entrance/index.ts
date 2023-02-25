@@ -42,13 +42,13 @@ export class Entrance extends Component {
                         })
 
                         const element = document.querySelector("#main");
-                        while (element.firstChild) {
-                            element.removeChild(element.firstChild);
+                        while (element!.firstChild) {
+                            element!.removeChild(element!.firstChild);
                         }
-                        element.appendChild(dialog.element);
+                        element!.appendChild(dialog.element);
                     }
                     else {
-                        event.preventDefault();
+                        event!.preventDefault();
                     }
                 }
             }
@@ -63,10 +63,10 @@ export class Entrance extends Component {
 
                     const registration = new Registration();
                     const element = document.querySelector("#main");
-                    while (element.firstChild) {
-                        element.removeChild(element.firstChild);
+                    while (element!.firstChild) {
+                        element!.removeChild(element!.firstChild);
                     }
-                    element.appendChild(registration.element);
+                    element!.appendChild(registration.element);
                 }
             }
         })

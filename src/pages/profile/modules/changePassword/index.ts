@@ -27,7 +27,7 @@ export class ChangePassword extends Component {
             class: 'button-green button-filled-bordered',
             events: {
                 click: (event) => {
-                    event.preventDefault();
+                    event!.preventDefault();
                     const oldPassword = that.children.oldPassword;
                     const newPassword = that.children.newPassword;
                     const repeatPassword = that.children.repeatPassword;

@@ -97,6 +97,7 @@ class Block {
     }
 
     protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+        console.log(oldProps, newProps);
         return true;
     }
 
@@ -109,14 +110,14 @@ class Block {
     };
 
     get element(): HTMLElement {
-        return this._element;
+        return this._element!;
     }
 
     get inputValue(): string {
         return (this._element as HTMLInputElement).value;
     }
 
-    get labelValue(): string {
+    get labelValue(): string | null {
         return (this._element as HTMLElement).textContent;
     }
 
@@ -156,7 +157,7 @@ class Block {
     }
 
     protected getContent(): HTMLElement {
-        return this.element;
+        return this.element!;
     }
 
     private _makePropsProxy(props: any): any {

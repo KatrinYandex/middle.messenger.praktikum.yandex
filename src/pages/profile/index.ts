@@ -9,19 +9,19 @@ import {ChangeData} from "./modules/changeData";
 function changeData(profileData: ProfileData): void {
     const data = new ChangeData(profileData);
     const element = document.querySelector("#main");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(data.element)
+    element!.appendChild(data.element)
 }
 
 function changePassword(): void {
     const password = new ChangePassword();
     const element = document.querySelector("#main");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(password.element)
+    element!.appendChild(password.element)
 }
 
 function exit(): void {
@@ -31,10 +31,10 @@ function exit(): void {
         label: 'Выберите диалог'
     })
     const element = document.querySelector("#main");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
+    while (element!.firstChild) {
+        element!.removeChild(element!.firstChild);
     }
-    element.appendChild(dialog.element)
+    element!.appendChild(dialog.element)
 }
 
 export class Profile extends Component {

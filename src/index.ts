@@ -1,9 +1,9 @@
 import "./style.scss";
 import { Entrance } from "./pages/entrance";
 
-function append(html: HTMLElement, id) {
+function append(html: HTMLElement, id: string) {
     const element = document.querySelector("#" + id);
-    element.appendChild(html);
+    element!.appendChild(html);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
