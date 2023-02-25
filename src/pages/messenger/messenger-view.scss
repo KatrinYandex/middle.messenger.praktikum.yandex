@@ -1,7 +1,7 @@
-@use '../../components/button.scss';
-@use '../../components/dialog-item.scss';
-@use './modules/dialog.scss';
-@use './modules/chat-settings.scss';
+@use '../../components/Button/button';
+@use '../../components/DialogItem/dialog-item';
+@use 'modules/Dialog/dialog';
+@use 'modules/ChatSettings/chat-settings';
 @import '../../variables.scss';
 
 .messenger-view {

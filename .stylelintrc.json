@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": [
+    "dist/*",
+    "node_modules",
+    ".parcel-cache"
+  ]
+}
