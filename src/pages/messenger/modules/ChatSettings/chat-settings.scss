@@ -1,5 +1,5 @@
-@use '../../../../components/Member/member';
-@import '../../../../variables';
+@use '../../../../components/Member/member.scss';
+@import '../../../../variables.scss';
 
 .text {
   color: $primary_color;
@@ -23,7 +23,6 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-
     border-radius: 10px;
     border: 2px solid $primary_color;
   }
@@ -31,11 +30,9 @@
   &__info {
     width: 100%;
     margin: 20px;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-
     gap: 20px;
   }
 

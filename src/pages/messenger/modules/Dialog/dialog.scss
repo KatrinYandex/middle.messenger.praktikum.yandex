@@ -1,8 +1,8 @@
-@use '../../../../components/LeftMessage/left-message';
-@use '../../../../components/LeftMessageGroup/left-message-group';
-@use '../../../../components/RightMessage/right-message';
-@use '../../../../components/DateMessage/date-message';
-@import '../../../../variables';
+@use '../../../../components/LeftMessage/left-message.scss';
+@use '../../../../components/LeftMessageGroup/left-message-group.scss';
+@use '../../../../components/RightMessage/right-message.scss';
+@use '../../../../components/DateMessage/date-message.scss';
+@import '../../../../variables.scss';
 
 .text {
   color: $primary_color;

@@ -1,20 +1,18 @@
-@use '../../components/Button/button';
-@use '../../components/DialogItem/dialog-item';
-@use 'modules/Dialog/dialog';
-@use 'modules/ChatSettings/chat-settings';
+@use '../../components/Button/button.scss';
+@use '../../components/DialogItem/dialog-item.scss';
+@use 'modules/Dialog/dialog.scss';
+@use 'modules/ChatSettings/chat-settings.scss';
 @import '../../variables.scss';
 
 .messenger-view {
   height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: row;
 
   &__left {
     width: 25vw;
     height: 100vh;
-
     background: $primary_light;
     border-right: 2px solid $primary_color;
   }
@@ -46,11 +44,9 @@
   &__search {
     @extend .text;
     font-size: 20px;
-
     height: 40px;
     width: 90%;
     margin: 10px;
-
     border-radius: 10px;
     border: 1px solid $primary_color;
   }
@@ -85,7 +81,6 @@
   &__name {
     @extend .text;
     font-size: 20px;
-
     padding: 10px;
   }
 

@@ -1,5 +1,5 @@
-@use "../LeftMessage/left-message";
-@import "../../variables";
+@use "../LeftMessage/left-message.scss";
+@import "../../variables.scss";
 
 .left-message {
   &__group {
@@ -8,7 +8,6 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
-
     padding: 10px;
     width: max-content;
     max-width: 400px;

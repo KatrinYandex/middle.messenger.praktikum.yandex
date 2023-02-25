@@ -1,17 +1,15 @@
-@import "../../variables";
+@import "../../variables.scss";
 
 .dialog-item {
   @extend .flex;
   margin: auto;
   padding: 20px;
   flex-direction: row;
-
   border-bottom: 1px solid $primary_color;
 
   &__photo {
     height: 50px;
     width: 50px;
-
     border-radius: 25px;
     background: gray;
   }
@@ -82,7 +80,6 @@
       @extend .text_light;
       @extend .flex;
       font-size: 18px;
-
       height: 20px;
       width: max-content;
       min-width: 10px;
