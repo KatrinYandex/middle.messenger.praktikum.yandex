@@ -2,16 +2,7 @@ import Component from "../../../../utils/Component";
 import {Button} from "../../../../components/Button";
 import template from "./change-password.hbs";
 import {Input} from "../../../../components/Input";
-import Block from "../../../../utils/Component";
-import inputCheck from "../../../../utils/inputCheck";
-
-function checkError(field: Block, type: string): boolean {
-    const check = inputCheck(field.inputValue, type);
-    if (!check) {
-        field.element.classList.add('error');
-    }
-    return check
-}
+import {checkErrorProfile} from "../../../../utils/errors";
 
 export class ChangePassword extends Component {
     constructor() {
@@ -32,9 +23,9 @@ export class ChangePassword extends Component {
                     const newPassword = that.children.newPassword;
                     const repeatPassword = that.children.repeatPassword;
 
-                    const repeatPasswordCheck = checkError(repeatPassword, 'password');
-                    const oldPasswordCheck = checkError(oldPassword, 'password');
-                    const newPasswordCheck = checkError(newPassword, 'password');
+                    const repeatPasswordCheck = checkErrorProfile(repeatPassword, 'password');
+                    const oldPasswordCheck = checkErrorProfile(oldPassword, 'password');
+                    const newPasswordCheck = checkErrorProfile(newPassword, 'password');
 
                     if (repeatPasswordCheck && oldPasswordCheck && newPasswordCheck) {
                         console.log(oldPassword.inputValue, newPassword.inputValue, repeatPassword.inputValue)
@@ -50,10 +41,13 @@ export class ChangePassword extends Component {
             events: {
                 focus: () => {
                     that.children.oldPassword.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.oldPassword.id}`)) {
+                        document.getElementById(`error${that.children.oldPassword.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const oldPassword = that.children.oldPassword;
-                    checkError(oldPassword, 'password');
+                    checkErrorProfile(oldPassword, 'password');
                 }
             }
         })
@@ -65,10 +59,13 @@ export class ChangePassword extends Component {
             events: {
                 focus: () => {
                     that.children.newPassword.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.newPassword.id}`)) {
+                        document.getElementById(`error${that.children.newPassword.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const newPassword = that.children.newPassword;
-                    checkError(newPassword, 'password');
+                    checkErrorProfile(newPassword, 'password');
                 }
             }
         })
@@ -80,10 +77,13 @@ export class ChangePassword extends Component {
             events: {
                 focus: () => {
                     that.children.repeatPassword.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.repeatPassword.id}`)) {
+                        document.getElementById(`error${that.children.repeatPassword.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const repeatPassword = that.children.repeatPassword;
-                    checkError(repeatPassword, 'password');
+                    checkErrorProfile(repeatPassword, 'password');
                 }
             }
         })

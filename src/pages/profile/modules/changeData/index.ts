@@ -3,16 +3,7 @@ import {Button} from "../../../../components/Button";
 import template from "./change-data.hbs";
 import {ProfileData} from "../../../../types";
 import {Input} from "../../../../components/Input";
-import inputCheck from "../../../../utils/inputCheck";
-import Block from "../../../../utils/Component";
-
-function checkError(field: Block, type: string): boolean {
-    const check = inputCheck(field.inputValue, type);
-    if (!check) {
-        field.element.classList.add('error');
-    }
-    return check
-}
+import {checkErrorProfile} from "../../../../utils/errors";
 
 export class ChangeData extends Component {
     constructor(props: ProfileData) {
@@ -37,12 +28,12 @@ export class ChangeData extends Component {
                     const nickName = that.children.nickNameInput;
                     const phone = that.children.phoneInput;
 
-                    const emailCheck = checkError(email, 'email');
-                    const loginCheck = checkError(login, 'login');
-                    const firstNameCheck = checkError(firstName, 'name');
-                    const secondNameCheck = checkError(secondName, 'name');
-                    const nickNameCheck = checkError(nickName, 'login');
-                    const phoneCheck = checkError(phone, 'phone');
+                    const emailCheck = checkErrorProfile(email, 'email');
+                    const loginCheck = checkErrorProfile(login, 'login');
+                    const firstNameCheck = checkErrorProfile(firstName, 'name');
+                    const secondNameCheck = checkErrorProfile(secondName, 'name');
+                    const nickNameCheck = checkErrorProfile(nickName, 'login');
+                    const phoneCheck = checkErrorProfile(phone, 'phone');
 
                     if (emailCheck && loginCheck && firstNameCheck && secondNameCheck && nickNameCheck && phoneCheck) {
                         console.log(email.inputValue, login.inputValue, firstName.inputValue, secondName.inputValue,
@@ -60,10 +51,13 @@ export class ChangeData extends Component {
             events: {
                 focus: () => {
                     that.children.emailInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.emailInput.id}`)) {
+                        document.getElementById(`error${that.children.emailInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const emailInput = that.children.emailInput;
-                    checkError(emailInput, 'email');
+                    checkErrorProfile(emailInput, 'email');
                 }
             }
         })
@@ -76,10 +70,13 @@ export class ChangeData extends Component {
             events: {
                 focus: () => {
                     that.children.loginInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.loginInput.id}`)) {
+                        document.getElementById(`error${that.children.loginInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const loginInput = that.children.loginInput;
-                    checkError(loginInput, 'login');
+                    checkErrorProfile(loginInput, 'login');
                 }
             }
         })
@@ -91,10 +88,13 @@ export class ChangeData extends Component {
             events: {
                 focus: () => {
                     that.children.firstNameInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.firstNameInput.id}`)) {
+                        document.getElementById(`error${that.children.firstNameInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const firstNameInput = that.children.firstNameInput;
-                    checkError(firstNameInput, 'name');
+                    checkErrorProfile(firstNameInput, 'name');
                 }
             }
         })
@@ -106,25 +106,31 @@ export class ChangeData extends Component {
             events: {
                 focus: () => {
                     that.children.secondNameInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.secondNameInput.id}`)) {
+                        document.getElementById(`error${that.children.secondNameInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const secondNameInput = that.children.secondNameInput;
-                    checkError(secondNameInput, 'name');
+                    checkErrorProfile(secondNameInput, 'name');
                 }
             }
         })
         this.children.nickNameInput = new Input({
             class: 'form__item__data-edit',
-            name: 'nick_name',
+            name: 'display_name',
             placeholder: '',
-            value : this.props.nick_name,
+            value : this.props.display_name,
             events: {
                 focus: () => {
                     that.children.nickNameInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.nickNameInput.id}`)) {
+                        document.getElementById(`error${that.children.nickNameInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const nickNameInput = that.children.nickNameInput;
-                    checkError(nickNameInput, 'login');
+                    checkErrorProfile(nickNameInput, 'login');
                 }
             }
         })
@@ -136,10 +142,13 @@ export class ChangeData extends Component {
             events: {
                 focus: () => {
                     that.children.phoneInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.phoneInput.id}`)) {
+                        document.getElementById(`error${that.children.phoneInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const phoneInput = that.children.phoneInput;
-                    checkError(phoneInput, 'phone');
+                    checkErrorProfile(phoneInput, 'phone');
                 }
             }
         })

@@ -4,16 +4,7 @@ import {Button} from "../../components/Button";
 import {Entrance} from "../entrance";
 import {Input} from "../../components/Input";
 import {DialogPage} from "../messenger";
-import inputCheck from "../../utils/inputCheck";
-import Block from "../../utils/Component";
-
-function checkError(field: Block, type: string): boolean {
-    const check = inputCheck(field.inputValue, type);
-    if (!check) {
-        field.element.classList.add('error');
-    }
-    return check
-}
+import {checkError} from "../../utils/errors";
 
 export class Registration extends Component {
     constructor() {
@@ -90,6 +81,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.emailInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.emailInput.id}`)) {
+                        document.getElementById(`error${that.children.emailInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const emailInput = that.children.emailInput;
@@ -105,6 +99,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.loginInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.loginInput.id}`)) {
+                        document.getElementById(`error${that.children.loginInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const loginInput = that.children.loginInput;
@@ -120,6 +117,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.firstNameInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.firstNameInput.id}`)) {
+                        document.getElementById(`error${that.children.firstNameInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const firstNameInput = that.children.firstNameInput;
@@ -135,6 +135,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.secondNameInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.secondNameInput.id}`)) {
+                        document.getElementById(`error${that.children.secondNameInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const secondNameInput = that.children.secondNameInput;
@@ -150,6 +153,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.phoneInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.phoneInput.id}`)) {
+                        document.getElementById(`error${that.children.phoneInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const phoneInput = that.children.phoneInput;
@@ -166,6 +172,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.passwordInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.passwordInput.id}`)) {
+                        document.getElementById(`error${that.children.passwordInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const passwordInput = that.children.passwordInput;
@@ -182,6 +191,9 @@ export class Registration extends Component {
             events: {
                 focus: () => {
                     that.children.passwordAgainInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.passwordAgainInput.id}`)) {
+                        document.getElementById(`error${that.children.passwordAgainInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const passwordAgainInput = that.children.passwordAgainInput;

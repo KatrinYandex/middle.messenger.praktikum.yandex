@@ -62,7 +62,7 @@ export class DialogPage extends Component {
                         login: 'login',
                         first_name: this.props.name,
                         second_name: this.props.name,
-                        nick_name: this.props.name,
+                        display_name: this.props.name,
                         phone: 'string'
                     });
                 }

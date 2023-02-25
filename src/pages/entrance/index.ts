@@ -4,16 +4,7 @@ import {Button} from "../../components/Button";
 import {Registration} from "../registration";
 import {DialogPage} from "../messenger";
 import {Input} from "../../components/Input";
-import inputCheck from "../../utils/inputCheck";
-import Block from "../../utils/Component";
-
-function checkError(field: Block, type: string): boolean {
-    const check = inputCheck(field.inputValue, type);
-    if (!check) {
-        field.element.classList.add('error');
-    }
-    return check
-}
+import {checkError} from "../../utils/errors";
 
 export class Entrance extends Component {
     constructor() {
@@ -78,6 +69,9 @@ export class Entrance extends Component {
             events: {
                 focus: () => {
                     that.children.loginInput.element.classList.remove('error');
+                    if (document.getElementById(`error${that.children.loginInput.id}`)) {
+                        document.getElementById(`error${that.children.loginInput.id}`)!.remove();
+                    }
                 },
                 blur () {
                     const loginInput = that.children.loginInput;
