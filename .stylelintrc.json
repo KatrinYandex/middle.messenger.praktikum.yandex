@@ -1,5 +1,5 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": "stylelint-config-standard",
   "customSyntax": "postcss-scss",
   "rules": {
     "at-rule-no-unknown": null,
