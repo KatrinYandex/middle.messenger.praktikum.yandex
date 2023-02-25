@@ -4,7 +4,12 @@
     "at-rule-no-unknown": null,
     "color-function-notation": "legacy",
     "selector-class-pattern": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "alpha-value-notation": "number",
+    "declaration-empty-line-before": "never",
+    "import-notation": "string",
+    "no-invalid-position-at-import-rule": null,
+    "at-rule-empty-line-before": "always"
   },
   "plugins": [
     "stylelint-scss"
