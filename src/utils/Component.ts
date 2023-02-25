@@ -1,20 +1,21 @@
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
 
-class Block {
+class Block{
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
         FLOW_CDU: "flow:component-did-update",
-        FLOW_RENDER: "flow:render"
+        FLOW_RENDER: "flow:render",
+        FLOW_CWU: "flow:component-will-unmount"
     };
 
     public id = nanoid(6);
-    protected props: any;
+    protected props: Record<string, any>;
     public children: Record<string, Block>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props: any; };
+    private _meta: { tagName: string; props: Record<string, any>; };
 
     /** JSDoc
      * @param {string} tagName
@@ -59,11 +60,21 @@ class Block {
         });
     }
 
+    private _removeEvents(): void {
+        const events = this.props.events;
+        if (events) {
+            Object.keys(events).forEach(eventName => {
+                this._element?.removeEventListener(eventName, events[eventName]);
+            });
+        }
+    }
+
     private _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+        eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     }
 
     private _createResources(): void {
@@ -101,6 +112,18 @@ class Block {
         return true;
     }
 
+    private _componentWillUnmount(): void {
+        this._removeEvents();
+        this.componentWillUnmount();
+    }
+
+    protected componentWillUnmount(): void {}
+
+    public dispatchComponentWillUnmount(): void {
+        this.eventBus().emit(Block.EVENTS.FLOW_CWU);
+        Object.values(this.children).forEach(child => child.dispatchComponentWillUnmount());
+    }
+
     setProps = (nextProps: any) => {
         if (!nextProps) {
             return;
@@ -123,6 +146,7 @@ class Block {
 
     private _render(): void {
         const fragment = this.render();
+        this._removeEvents();
         const newElement = fragment.firstElementChild as HTMLElement;
         if (this._element) {
             this._element.replaceWith(newElement);

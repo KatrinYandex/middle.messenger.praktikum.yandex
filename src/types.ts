@@ -5,6 +5,6 @@ export interface ProfileData {
     login: string,
     first_name: string,
     second_name: string,
-    nick_name: string,
+    display_name: string,
     phone: string
 }
