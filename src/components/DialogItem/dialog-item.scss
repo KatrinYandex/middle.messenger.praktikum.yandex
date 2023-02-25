@@ -5,7 +5,7 @@
   margin: auto;
   padding: 20px;
   flex-direction: row;
-  border-bottom: 1px solid $primary_color;
+  border-bottom: 1px solid $primary-color;
 
   &__photo {
     height: 50px;
@@ -21,12 +21,12 @@
   }
 
   &:hover {
-    background: $primary_dark_light;
+    background: $primary-dark-light;
   }
 }
 
 .text {
-  color: $primary_color;
+  color: $primary-color;
   font-family: Inter, serif;
 }
 
@@ -85,7 +85,7 @@
       min-width: 10px;
       padding: 0 5px;
       border-radius: 10px;
-      background: $primary_color;
+      background: $primary-color;
       flex-direction: column;
     }
 

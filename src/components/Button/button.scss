@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 
 .button-green {
-  background: $primary_color;
+  background: $primary-color;
   color: white;
   font-size: 20px;
   font-family: Inter, serif;
@@ -9,7 +9,7 @@
 
 .button-white {
   background: white;
-  color: $primary_color;
+  color: $primary-color;
   font-size: 20px;
   font-family: Inter, serif;
 }
@@ -23,7 +23,7 @@
 
 .button-filled-bordered {
   border-radius: 10px;
-  border: 1px solid $primary_color;
+  border: 1px solid $primary-color;
   width: 100%;
   height: 40px;
 }
@@ -37,7 +37,7 @@
 
 .button-empty-bordered {
   border-radius: 10px;
-  border: 1px solid $primary_color;
+  border: 1px solid $primary-color;
   width: 100%;
   height: 40px;
 }

@@ -3,7 +3,7 @@
 
 .left-message {
   &__group {
-    background: $primary_light;
+    background: $primary-light;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
 .group {
   &-name {
     font-family: Inter, serif;
-    color: $primary_color;
+    color: $primary-color;
     font-size: 24px;
     margin-bottom: 10px;
   }

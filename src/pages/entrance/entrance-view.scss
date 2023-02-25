@@ -21,13 +21,13 @@
 
   &__form_border {
     border-radius: 10px;
-    border-color: $primary_color;
+    border-color: $primary-color;
     border-style: solid;
   }
 }
 
 .text {
-  color: $primary_color;
+  color: $primary-color;
   font-family: Inter, serif;
 }
 
@@ -58,7 +58,7 @@
     width: 250px;
     height: 30px;
     border-style: none;
-    border-bottom: 2px solid $primary_color;
+    border-bottom: 2px solid $primary-color;
     font-size: 16px;
   }
 }

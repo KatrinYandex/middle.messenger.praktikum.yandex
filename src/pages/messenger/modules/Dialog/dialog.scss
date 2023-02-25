@@ -5,7 +5,7 @@
 @import '../../../../variables.scss';
 
 .text {
-  color: $primary_color;
+  color: $primary-color;
   font-family: Inter, serif;
 }
 
@@ -18,7 +18,7 @@
 
   &__header, &__sender {
     padding: 10px;
-    background: $primary_light;
+    background: $primary-light;
   }
 
   &__sender {

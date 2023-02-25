@@ -8,21 +8,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid $primary_color;
-    border-bottom: 1px solid $primary_color;
+    border-top: 1px solid $primary-color;
+    border-bottom: 1px solid $primary-color;
   }
 
   &-name {
     font-family: Inter, serif;
     font-size: 24px;
-    color: $primary_color;
+    color: $primary-color;
     padding-left: 10px;
   }
 
   &-delete {
     font-family: Inter, serif;
     font-size: 24px;
-    color: $primary_color;
+    color: $primary-color;
     padding-right: 10px;
   }
 }

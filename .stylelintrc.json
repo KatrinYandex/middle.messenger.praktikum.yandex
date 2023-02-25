@@ -10,7 +10,8 @@
     "declaration-empty-line-before": "never",
     "import-notation": "string",
     "no-invalid-position-at-import-rule": null,
-    "at-rule-empty-line-before": "never"
+    "at-rule-empty-line-before": "never",
+    "at-import-partial-extension": "always"
   },
   "plugins": [
     "stylelint-scss"
