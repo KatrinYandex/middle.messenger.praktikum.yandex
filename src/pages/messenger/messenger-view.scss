@@ -1,22 +1,20 @@
-@use '../../components/button.scss';
-@use '../../components/dialog-item.scss';
-@use './modules/dialog.scss';
-@use './modules/chat-settings.scss';
+@use '../../components/Button/button.scss';
+@use '../../components/DialogItem/dialog-item.scss';
+@use 'modules/Dialog/dialog.scss';
+@use 'modules/ChatSettings/chat-settings.scss';
 @import '../../variables.scss';
 
 .messenger-view {
   height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: row;
 
   &__left {
     width: 25vw;
     height: 100vh;
-
-    background: $primary_light;
-    border-right: 2px solid $primary_color;
+    background: $primary-light;
+    border-right: 2px solid $primary-color;
   }
 
   &__right {
@@ -30,7 +28,7 @@
 }
 
 .text {
-  color: $primary_color;
+  color: $primary-color;
   font-family: Inter, serif;
 }
 
@@ -39,20 +37,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 2px solid $primary_color;
+  border-bottom: 2px solid $primary-color;
 }
 
 .info {
   &__search {
     @extend .text;
     font-size: 20px;
-
     height: 40px;
     width: 90%;
     margin: 10px;
-
     border-radius: 10px;
-    border: 1px solid $primary_color;
+    border: 1px solid $primary-color;
   }
 
   &__main {
@@ -85,7 +81,6 @@
   &__name {
     @extend .text;
     font-size: 20px;
-
     padding: 10px;
   }
 

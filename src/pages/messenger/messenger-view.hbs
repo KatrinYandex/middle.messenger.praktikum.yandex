@@ -6,17 +6,14 @@
                     <div class="profile__photo">
                         <img src="{{ src }}">
                     </div>
-                    <p class="profile__name"
-                       onclick="goToPage('profile_view', {name:'Vitaly Borisov', login:'asllf', email:'vit@mail.com', first_name: 'Vitaly', second_name:'Borisov', nick_name: 'Vita', phone: '+79277777777'})">{{ name }}</p>
-                </div>
-                <p class="info__create-chat" onclick="openSettings('dialog-space')">Создать чат</p>
+                    {{{ profileLabel }}}
+                   </div>
+                {{{ createChatLabel }}}
             </div>
-            <input class="info__search" placeholder="Поиск...">
+            {{{ infoInput }}}
         </div>
-        {{> dialog-item src="" id=1 name_message="Юрий Вадимов" date="10:03" message="Сообщение важное очень, зайти пж на сайт наш, глянь.." count=0 style="message__count-0"}}
-        {{> dialog-item src="" id=2 name_message="Юрий Вадимов" date="10:03" message="Сообщение важное очень, зайти пж на сайт наш, глянь.." count=5555 style="message__count-1"}}
-        {{> dialog-item src="" id=3 name_message="Юрий Вадимов" date="10:03" message="Сообщение важное очень, зайти пж на сайт наш, глянь.." count=5 style="message__count-1"}}
-        {{> dialog-item src="" id=4 name_message="Юрий Вадимов" date="10:03" message="Сообщение важное очень, зайти пж на сайт наш, глянь.." count=5 style="message__count-1"}}
+        {{{ dialogItem1 }}}
+        {{{ dialogItem2 }}}
     </div>
     <div class="messenger-view__right" id="dialog-space">
         <h1 class="info-label">

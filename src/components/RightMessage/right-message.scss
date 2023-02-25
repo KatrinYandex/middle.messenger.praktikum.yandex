@@ -1,0 +1,36 @@
+@import "../../variables.scss";
+
+.right-message {
+  width: 100%;
+  height: max-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: end;
+  }
+
+  &__time {
+    font-family: Inter, serif;
+    color: rgb(0, 0, 0, 0.8);
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  &__text {
+    background: $primary-dark-light;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+    width: max-content;
+    max-width: 400px;
+    margin-left: 10px;
+    margin-right: 20px;
+    font-family: Inter, serif;
+    color: rgb(0, 0, 0, 0.8);
+    font-size: 24px;
+  }
+}
