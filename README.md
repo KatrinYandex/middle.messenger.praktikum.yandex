@@ -1,3 +1,6 @@
+## Ссылка на PR:
+[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/5)
+
 ## Описание
 Разработка мессенджера для обучения на practicum.yandex.ru.
 Проект находится на стадии разработки (верстка). Мессенджер удобен для общения, имеет большой функционал: 
