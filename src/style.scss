@@ -1,11 +1,11 @@
-@use 'pages/entrance/entrance-view';
-@use 'pages/registration/registration-view';
-@use 'pages/messenger/messenger-view';
-@use 'pages/errors/error-50x';
-@use 'pages/errors/error-40x';
-@use 'pages/profile/profile-view';
-@use 'pages/profile/modules/change-data';
-@use 'pages/profile/modules/change-password';
+@use 'pages/entrance/entrance-view.scss';
+@use 'pages/registration/registration-view.scss';
+@use 'pages/messenger/messenger-view.scss';
+@use 'pages/errors/50x/error-50x.scss';
+@use 'pages/errors/40x/error-40x.scss';
+@use 'pages/profile/profile-view.scss';
+@use 'pages/profile/modules/changeData/change-data.scss';
+@use 'pages/profile/modules/changePassword/change-password.scss';
 
 body {
   margin: 0;
@@ -14,4 +14,23 @@ body {
 p {
   margin: 0;
   padding: 0;
+}
+
+.error {
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+.error-text {
+  font-size: 12px;
+  color: red;
+  word-wrap: break-word;
+  width: 250px;
+}
+
+.error-text-profile {
+  font-size: 12px;
+  color: red;
+  word-wrap: break-word;
+  width: 500px;
 }

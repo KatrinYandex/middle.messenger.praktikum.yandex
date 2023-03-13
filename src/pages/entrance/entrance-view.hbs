@@ -5,15 +5,15 @@
             <div>
                 <label class="form__label">Логин</label>
             </div>
-            <input class="form__input" name="login" placeholder="Введите логин">
+            {{{ loginInput }}}
         </div>
         <div class="form__item">
             <div>
                 <label class="form__label">Пароль </label>
             </div>
-            <input class="form__input" name="password" type="password" placeholder="Введите пароль">
+            {{{ passwordInput }}}
         </div>
-        {{> button class="button-green button-filled" label="Войти" type="submit" onclick="goToPage('messenger', {name: 'Виталий Юрьев', label: 'Выберите диалог'})" }}
-        {{> button class="button-white button-empty" label="Зарегестрироваться" type="button" onclick="goToPage('registration', {})"}}
+        {{{ entranceButton }}}
+        {{{ registerButton }}}
     </form>
 </div>
