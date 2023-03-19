@@ -1,5 +1,5 @@
 ## Ссылка на PR:
-[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/5)
+[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/9)
 
 ## Описание
 Разработка мессенджера для обучения на practicum.yandex.ru.
