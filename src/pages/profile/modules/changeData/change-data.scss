@@ -30,6 +30,15 @@
     border-radius: 75px;
     background: gray;
     border-style: none;
+    opacity: 0.0;
+  }
+
+  &__photo-edit-back {
+    width: 120px;
+    height: 120px;
+    border-radius: 75px;
+    background: gray;
+    border-style: none;
   }
 
   &__name-edit {

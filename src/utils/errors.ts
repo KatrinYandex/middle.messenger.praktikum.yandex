@@ -4,7 +4,7 @@ import inputCheck from "./inputCheck";
 export function getErrorText(type: string): string {
     switch (type) {
         case 'login':
-            return 'Логин может содержать от 3 до 20 символов, буквы и цифры'
+            return 'Логин или ник могут содержать от 3 до 20 символов, буквы и цифры'
             break
         case 'password':
             return 'Пароль должен содержать от 8 до 40 символов, обязательно хотя бы одна заглавную букву и цифру'

@@ -1,7 +1,7 @@
 export class EventBus {
     private readonly listeners: Record<string, Array<() => void>> = {};
 
-    on(event: string, callback: () => void) {
+    on(event: string, callback: (data?: any) => void) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -19,7 +19,7 @@ export class EventBus {
 
     emit(event: string, ...args: any[]) {
         if (!this.listeners[event]) {
-            throw new Event(`Нет события: ${event}`);
+            return
         }
         this.listeners[event].forEach(listener => {
             // @ts-ignore

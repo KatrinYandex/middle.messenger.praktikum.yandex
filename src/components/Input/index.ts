@@ -10,7 +10,8 @@ interface InputProps {
     type?: string,
     events?: {
         blur?: () => void,
-        focus?: () => void
+        focus?: () => void,
+        change?: () => void
     }
 }
 

@@ -15,9 +15,11 @@
     height: 100vh;
     background: $primary-light;
     border-right: 2px solid $primary-color;
+    overflow-y: scroll;
   }
 
   &__right {
+    z-index: 1;
     width: 75vw;
     height: 100vh;
     display: flex;
