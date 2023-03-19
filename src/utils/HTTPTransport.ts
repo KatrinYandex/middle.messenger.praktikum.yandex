@@ -82,6 +82,7 @@ export default class HTTPTransport {
             else {
                 xhr.setRequestHeader('Content-Type', 'application/json');
             }
+            xhr.setRequestHeader('X-XSS-Protection', '1');
 
             xhr.withCredentials = true;
 

@@ -7,7 +7,7 @@ import {Input} from "../../../../components/Input";
 import {ClickableLabel} from "../../../../components/ClickableLabel";
 import {ChatSettings} from "../ChatSettings";
 import ChatController from "../../../../controllers/ChatController";
-import store, {withStore} from "../../../../utils/Store";
+import store from "../../../../utils/Store";
 import MessagesController from "../../../../controllers/MessagesController";
 import {Container} from "../../../../components/Container";
 
@@ -16,7 +16,7 @@ interface DialogProps {
     id: number | string,
     messages?: any[]
 }
-class Dialog extends Component {
+export class Dialog extends Component {
     constructor(props: DialogProps) {
         super('div', props);
     }
@@ -24,27 +24,8 @@ class Dialog extends Component {
     init() {
         const that = this;
         this.children.messageContainer = new Container();
-        if (this.props.messages && this.props.messages.length > 0) {
-            const userId = store.getState().user!.data!.id;
-            this.props.messages.forEach((message: any) => {
-                if (userId === message.user_id) {
-                    const temp = new RightMessage({
-                        text: message.content,
-                        time: message.time
-                    }).getContent();
+        this.drawMessages();
 
-                    this.children.messageContainer.getContent().appendChild(temp);
-                }
-                else {
-                    const temp = new LeftMessage({
-                        text: message.content,
-                        time: message.time
-                    }).getContent();
-
-                    this.children.messageContainer.getContent().appendChild(temp);
-                }
-            })
-        }
         this.children.addButton = new Button({
             label: '+',
             type: 'button',
@@ -91,17 +72,7 @@ class Dialog extends Component {
                 }
             }
         })
-        // this.children.dateMessage = new DateMessage({
-        //     date: 'Today'
-        // })
-        // this.children.leftMessage = new LeftMessage({
-        //     text: 'Hello',
-        //     time: '10:03'
-        // })
-        // this.children.rightMessage = new RightMessage({
-        //     text: 'Hello, bro?',
-        //     time: '10:05'
-        // })
+
         this.children.messageInput = new Input({
             class: 'message-input',
             name: 'message',
@@ -110,15 +81,39 @@ class Dialog extends Component {
         })
     }
 
+    private drawMessages() {
+        this.props.messages = store.getState().messages![this.props.id]
+        if (this.props.messages && this.props.messages.length > 0) {
+            const userId = store.getState().user!.data!.id;
+            this.props.messages.forEach((message: any) => {
+                if (userId === message.user_id) {
+                    const temp = new RightMessage({
+                        text: message.content,
+                        time: message.time.substring(11, 16)
+                    }).getContent();
+
+                    this.children.messageContainer.getContent().appendChild(temp);
+                }
+                else {
+                    const temp = new LeftMessage({
+                        text: message.content,
+                        time: message.time.substring(11, 16)
+                    }).getContent();
+
+                    this.children.messageContainer.getContent().appendChild(temp);
+                }
+            })
+        }
+    }
     render() {
         return this.compile(template, this.props);
     }
 }
 
-const DialogComponent = withStore(state => {
-    return {
-        messages: state.messages
-    }
-})
-
-export const DialogPart = DialogComponent(Dialog);
+// const DialogComponent = withStore(state => {
+//     return {
+//         messages: state.messages
+//     }
+// })
+//
+// export const DialogPart = DialogComponent(Dialog);

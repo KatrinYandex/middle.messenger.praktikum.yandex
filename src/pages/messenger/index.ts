@@ -9,7 +9,7 @@ import Router from "../../utils/Router";
 import {Chat} from "../../types";
 import {DialogItem} from "../../components/DialogItem";
 import {Container} from "../../components/Container";
-import {DialogPart} from "./modules/Dialog";
+import {Dialog} from "./modules/Dialog";
 
 interface DialogProps {
     user: {
@@ -60,25 +60,30 @@ export class DialogPage extends Component {
             placeholder: 'Поиск...',
             value : ''
         })
-        this.children.messenger;
+        this.children.messenger = new Container();
         this.children.dialogContainer = new Container();
         if (this.props.chats && this.props.chats.length > 0 && store.getState().chats && store.getState().chats!.length > 1) {
             this.props.chats.forEach((chat: Chat) => {
                 this.children.dialogContainer.getContent().appendChild(new DialogItem({
                     src: chat.avatar,
                     id: chat.id,
-                    date: chat.last_message ? chat.last_message.time : '00:00',
+                    date: chat.last_message ? chat.last_message.time.substring(11, 16) : '00:00',
                     name_message: chat.last_message? chat.last_message.user.first_name: chat.title,
                     message: chat.last_message ? chat.last_message.user.first_name + ': ' + chat.last_message.content : 'someone',
                     count: chat.unread_count,
                     style: chat.unread_count === 0 ? 'message__count-0' : 'message__count-1',
                     events: {
                         click: () => {
-                            this.children.messenger = new DialogPart({
+                            const container = document.querySelector('#dialog-space');
+                            container!.innerHTML = '';
+                            container!.appendChild(new Dialog({
                                 name: chat.title,
                                 id: chat.id
-                            })
-                            console.log(this, this.children.messenger)
+                            }).getContent());
+                            // this.children.messenger = new DialogPart({
+                            //     name: chat.title,
+                            //     id: chat.id
+                            // })
                         }
                     }
                 }).getContent())
