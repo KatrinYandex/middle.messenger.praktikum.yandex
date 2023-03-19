@@ -38,6 +38,11 @@ class Block<P extends Record<string, any> = any> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
+    public emitUpdate() {
+        const bus = this.eventBus();
+        bus.emit(Block.EVENTS.INIT)
+    }
+
     private _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block>} {
         const props: Record<string, unknown> = {};
         const children: Record<string, Block> = {};

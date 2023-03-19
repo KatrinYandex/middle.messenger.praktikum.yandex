@@ -7,7 +7,7 @@ import {Input} from "../../../../components/Input";
 import {ClickableLabel} from "../../../../components/ClickableLabel";
 import {ChatSettings} from "../ChatSettings";
 import ChatController from "../../../../controllers/ChatController";
-import store from "../../../../utils/Store";
+import store, {withStore} from "../../../../utils/Store";
 import MessagesController from "../../../../controllers/MessagesController";
 import {Container} from "../../../../components/Container";
 
@@ -110,10 +110,10 @@ export class Dialog extends Component {
     }
 }
 
-// const DialogComponent = withStore(state => {
-//     return {
-//         messages: state.messages
-//     }
-// })
-//
-// export const DialogPart = DialogComponent(Dialog);
+const DialogComponent = withStore(state => {
+    return {
+        messages: state.messages
+    }
+})
+
+export const DialogPart = DialogComponent(Dialog);
