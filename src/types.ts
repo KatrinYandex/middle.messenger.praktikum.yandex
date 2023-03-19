@@ -1,4 +1,5 @@
 import Block from "./utils/Component";
+import {Message} from "./controllers/MessagesController";
 
 export type Indexed<T = any> = {
     [key in string]: T;
@@ -60,6 +61,11 @@ export interface Chat {
     users?: UserData[];
 }
 
+export interface UserChat {
+    name: string,
+    id: number | string
+}
+
 export interface State {
     user?: {
         data?: UserData,
@@ -69,6 +75,11 @@ export interface State {
         message?: string
     };
     chats?: Chat[];
+    chat?: {
+        users?: UserChat[]
+    },
+    token?: string,
+    messages?: Record<number, Message[]>,
     selectedChat?: number;
 }
 

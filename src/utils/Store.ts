@@ -10,7 +10,7 @@ class Store extends EventBus {
 
     set(path: string, value: any) {
         set(this.state, path, value);
-        // this.emit(StoreEvents.update, this.state);
+        this.emit(StoreEvents.update, this.state);
     }
 
     getState(): State {
@@ -27,7 +27,7 @@ export const withStore = (mapStateToProps: (state: any) => any) => (Component: B
             super({ ...props, ...previousState });
             store.on(StoreEvents.update, () => {
                 const stateProps = mapStateToProps(store.getState());
-                if(isEqual(previousState, stateProps)) {
+                if(previousState && stateProps && isEqual(previousState, stateProps)) {
                     return;
                 }
                 previousState = stateProps;

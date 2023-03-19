@@ -14,7 +14,7 @@ export default class UserAPI extends BaseAPI {
     }
 
     avatar(data: FormData) {
-        return this.http.put('/profile/avatar', {data: data, headers: {'Content-Type': 'multipart/form-data'}});
+        return this.http.put('/profile/avatar', {data: data});
     }
 
     search(data: {login: string}) {

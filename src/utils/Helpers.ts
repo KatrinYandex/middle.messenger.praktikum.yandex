@@ -1,18 +1,21 @@
 import {Indexed} from "../types";
 
 export function isEqual(a: object, b: object): boolean {
-    const aKeys = Object.keys(a);
-    const bKeys = Object.keys(b);
+    if (a && b) {
+        const aKeys = Object.keys(a);
+        const bKeys = Object.keys(b);
 
-    if (aKeys.length === bKeys.length && aKeys.every((val, index) => val === bKeys[index])) {
-        return aKeys.every((key: string) => {
-            if (typeof (a as any)[key] === "object" && typeof (b as any)[key] === "object") {
-                return isEqual((a as any)[key] as object, (b as any)[key] as object)
-            }
-            else return ((a as any)[key] === (b as any)[key])
-        })
+        if (aKeys.length === bKeys.length && aKeys.every((val, index) => val === bKeys[index])) {
+            return aKeys.every((key: string) => {
+                if (typeof (a as any)[key] === "object" && typeof (b as any)[key] === "object") {
+                    return isEqual((a as any)[key] as object, (b as any)[key] as object)
+                }
+                else return ((a as any)[key] === (b as any)[key])
+            })
+        }
+        return false
     }
-    return false
+    else {return false}
 }
 
 export function cloneDeep<T extends object = object>(obj: T) {

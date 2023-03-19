@@ -11,7 +11,6 @@ export interface DialogItemProps {
     count:number,
     events: {
         click: () => void
-        //openDialog
     }
 }
 export class DialogItem extends Component {

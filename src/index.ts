@@ -10,6 +10,7 @@ import {MessengerPage} from "./pages/messenger";
 import {ChangeDataPage} from "./pages/profile/modules/changeData";
 import AuthController from "./controllers/AuthController";
 import store from "./utils/Store";
+import ChatController from "./controllers/ChatController";
 
 enum Routes {
     entrance = '/',
@@ -33,8 +34,10 @@ window.addEventListener("DOMContentLoaded", async () => {
     try {
         await AuthController.user()
         if (store.getState().user!.data!.id) {
+            await ChatController.getChats({}).then();
+            const path = window.location.pathname.split('/')[window.location.pathname.split('/').length-1];
             Router.start();
-            Router.go(Routes.profile)
+            Router.go('/' + path)
         }
         else {
             Router.start()

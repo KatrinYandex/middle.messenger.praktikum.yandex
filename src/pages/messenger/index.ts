@@ -6,10 +6,10 @@ import {ClickableLabel} from "../../components/ClickableLabel";
 import {ChatSettings} from "./modules/ChatSettings";
 import store, {withStore} from "../../utils/Store";
 import Router from "../../utils/Router";
-import ChatController from "../../controllers/ChatController";
 import {Chat} from "../../types";
 import {DialogItem} from "../../components/DialogItem";
 import {Container} from "../../components/Container";
+import {DialogPart} from "./modules/Dialog";
 
 interface DialogProps {
     user: {
@@ -21,7 +21,7 @@ interface DialogProps {
 }
 
 function openSettings(chatName: string): void {
-    const settings = new ChatSettings({name: chatName})
+    const settings = new ChatSettings({name: chatName, id: ''})
     const element = document.querySelector("#dialog-space");
     while (element!.firstChild) {
         element!.removeChild(element!.firstChild);
@@ -35,7 +35,6 @@ export class DialogPage extends Component {
     }
 
     init() {
-        ChatController.getChats({limit: 100, offset: 0})
         this.children.profileLabel = new ClickableLabel({
             label: this.props.user ? this.props.user.first_name : '',
             class: 'profile__name',
@@ -50,7 +49,7 @@ export class DialogPage extends Component {
             class: 'info__create-chat',
             events: {
                 click: () => {
-                    openSettings('Some Name');
+                    openSettings('');
                 }
             }
         })
@@ -61,9 +60,8 @@ export class DialogPage extends Component {
             placeholder: 'Поиск...',
             value : ''
         })
-
+        this.children.messenger;
         this.children.dialogContainer = new Container();
-
         if (this.props.chats && this.props.chats.length > 0 && store.getState().chats && store.getState().chats!.length > 1) {
             this.props.chats.forEach((chat: Chat) => {
                 this.children.dialogContainer.getContent().appendChild(new DialogItem({
@@ -76,7 +74,11 @@ export class DialogPage extends Component {
                     style: chat.unread_count === 0 ? 'message__count-0' : 'message__count-1',
                     events: {
                         click: () => {
-                            console.log('dddd')
+                            this.children.messenger = new DialogPart({
+                                name: chat.title,
+                                id: chat.id
+                            })
+                            console.log(this, this.children.messenger)
                         }
                     }
                 }).getContent())
