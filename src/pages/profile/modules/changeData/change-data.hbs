@@ -1,6 +1,8 @@
 <div class="profile-view-edit">
-    <form class="profile-view-edit__box">
-        <button class="form__photo-edit" name="avatar">{{ img }}</button>
+    <div class="profile-view-edit__box">
+        <form enctype="multipart/form-data">
+            <div class="form__photo-edit-back"><input class="form__photo-edit" id="avatar" type="file" name="avatar">{{ img }}</input></div>
+        </form>
         <p class="form__name-edit">{{ name }}</p>
         <div class="form__item-profile-edit">
             <p class="form__item__label-edit">Почта</p>
@@ -27,5 +29,6 @@
             {{{ phoneInput }}}
         </div>
         {{{ saveButton }}}
-    </form>
+        {{{ backButton }}}
+    </div>
 </div>

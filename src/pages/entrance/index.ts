@@ -1,11 +1,15 @@
 import Component from "../../utils/Component";
 import template from "./entrance-view.hbs";
 import {Button} from "../../components/Button";
-import {Registration} from "../registration";
-import {DialogPage} from "../messenger";
 import {Input} from "../../components/Input";
 import {checkError} from "../../utils/errors";
+import AuthController from "../../controllers/AuthController";
+import store from "../../utils/Store";
+import Router from "../../utils/Router";
 
+async function userLogin(login: string, password: string) {
+    await AuthController.signin({login: login, password: password})
+}
 export class Entrance extends Component {
     constructor() {
         super('div');
@@ -18,49 +22,36 @@ export class Entrance extends Component {
             type: 'submit',
             class: 'button-green button-filled',
             events: {
-                click: (event) => {
+                click: async (event) => {
+                    event!.preventDefault();
                     const login = that.children.loginInput;
                     const password = that.children.passwordInput;
                     const loginCheck = checkError(login, 'login');
                     const passwordCheck = checkError(password, 'password');
                     if (loginCheck && passwordCheck) {
-                        console.log(login.inputValue, password.inputValue)
-
-                        const dialog = new DialogPage({
-                            name: "Vitali Gregor",
-                            src: '',
-                            label: 'Выберите диалог'
-                        })
-
-                        const element = document.querySelector("#main");
-                        while (element!.firstChild) {
-                            element!.removeChild(element!.firstChild);
-                        }
-                        element!.appendChild(dialog.element);
-                    }
-                    else {
                         event!.preventDefault();
+                        await userLogin(login.inputValue, password.inputValue).then(() => {
+                            if (store.getState().user && store.getState().user!.data!.id) {
+                                //
+                            }
+                            else {}
+                        });
                     }
                 }
             }
         })
+
         this.children.registerButton = new Button({
             label: 'Зарегестрироваться',
             type: 'button',
             class: 'button-white button-empty',
             events: {
                 click: () => {
-                    console.log('Зарегестрироваться')
-
-                    const registration = new Registration();
-                    const element = document.querySelector("#main");
-                    while (element!.firstChild) {
-                        element!.removeChild(element!.firstChild);
-                    }
-                    element!.appendChild(registration.element);
+                    Router.go('/register')
                 }
             }
         })
+
         this.children.loginInput = new Input({
             class: 'form__input',
             name: 'login',

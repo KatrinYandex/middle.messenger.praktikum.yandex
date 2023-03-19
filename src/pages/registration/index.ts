@@ -1,11 +1,16 @@
 import Component from "../../utils/Component";
 import template from "./registration-view.hbs";
 import {Button} from "../../components/Button";
-import {Entrance} from "../entrance";
 import {Input} from "../../components/Input";
-import {DialogPage} from "../messenger";
 import {checkError} from "../../utils/errors";
+import {SignupData} from "../../types";
+import AuthController from "../../controllers/AuthController";
+import store from "../../utils/Store";
+import Router from "../../utils/Router";
 
+async function userRegistration(data: SignupData) {
+    await AuthController.signup(data);
+}
 export class Registration extends Component {
     constructor() {
         super('div');
@@ -19,14 +24,7 @@ export class Registration extends Component {
             class: 'button-white button-empty',
             events: {
                 click: () => {
-                    console.log('Войти')
-
-                    const entrance = new Entrance();
-                    const element = document.querySelector("#main");
-                    while (element!.firstChild) {
-                        element!.removeChild(element!.firstChild);
-                    }
-                    element!.appendChild(entrance.element);
+                    Router.go('/')
                 }
             }
         })
@@ -55,20 +53,19 @@ export class Registration extends Component {
 
                     if (emailCheck && loginCheck && firstNameCheck && secondNameCheck && phoneCheck && passwordCheck
                         && passwordAgainCheck) {
-                        const dialog = new DialogPage({
-                            name: "Vitali Gregor",
-                            src: '',
-                            label: 'Выберите диалог'
+                        userRegistration({
+                            first_name: firstName.inputValue,
+                            second_name: secondName.inputValue,
+                            email: email.inputValue,
+                            login: login.inputValue,
+                            password: password.inputValue,
+                            phone: phone.inputValue
+                        }).then(() => {
+                            if (store.getState().user && store.getState().user!.data) {
+                                console.log('good')
+                            }
+                            else (console.log('Error, user data not found'));
                         })
-
-                        const element = document.querySelector("#main");
-                        while (element!.firstChild) {
-                            element!.removeChild(element!.firstChild);
-                        }
-                        element!.appendChild(dialog.element);
-
-                        console.log(login.inputValue, email.inputValue, firstName.inputValue, secondName.inputValue,
-                            phone.inputValue, password.inputValue, passwordAgain.inputValue);
                     }
                 }
             }
@@ -207,3 +204,4 @@ export class Registration extends Component {
         return this.compile(template, {});
     }
 }
+
