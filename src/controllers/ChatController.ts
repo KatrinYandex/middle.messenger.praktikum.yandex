@@ -48,6 +48,17 @@ class ChatController {
         }
     }
 
+    async getUsersforChat(data: {id: any}) {
+        try {
+            const result = await this.api.getUsers(data);
+            if ((result as any).status === 200) {
+                return JSON.parse((result as any).response)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async addUser(data: { users: any[], chatId: any }) {
         try {
             const result = await this.api.addUser(data);
@@ -76,6 +87,14 @@ class ChatController {
             if ((result as any).status === 200) {
                 await this.getChats({});
             }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async avatar(data: FormData) {
+        try {
+            await this.api.avatar(data);
         } catch (e) {
             console.log(e);
         }

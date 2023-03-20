@@ -179,8 +179,11 @@ class Block<P extends Record<string, any> = any> {
             component.getContent()?.append(...Array.from(stub.childNodes));
             stub.replaceWith(component.getContent()!);
         });
+        this.afterCompile();
         return temp.content;
     }
+
+    protected afterCompile() {}
 
     protected render(): DocumentFragment {
         return new DocumentFragment();

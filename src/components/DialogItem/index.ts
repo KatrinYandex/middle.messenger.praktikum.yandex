@@ -3,7 +3,7 @@ import template from "./dialog-item.hbs";
 
 export interface DialogItemProps {
     id: number,
-    src: string | null | undefined,
+    img: string | null | undefined,
     name_message: string | null | undefined,
     date: string | null | undefined,
     message: string | null | undefined,

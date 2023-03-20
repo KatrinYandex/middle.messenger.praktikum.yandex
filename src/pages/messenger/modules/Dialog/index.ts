@@ -14,6 +14,7 @@ import {Container} from "../../../../components/Container";
 interface DialogProps {
     name: string,
     id: number | string,
+    img: string,
     messages?: any[]
 }
 export class Dialog extends Component {
@@ -21,8 +22,15 @@ export class Dialog extends Component {
         super('div', props);
     }
 
+    // @ts-ignore
+    componentDidUpdate(oldProps: any, newProps: any) {
+        if (newProps) {
+            this.props = newProps;
+            this.drawMessages()
+        }
+        return true
+    }
     init() {
-        const that = this;
         this.children.messageContainer = new Container();
         this.drawMessages();
 
@@ -36,13 +44,14 @@ export class Dialog extends Component {
         })
         this.children.sendButton = new Button({
             label: '➤',
-            type: 'submit',
+            type: 'button',
             class: 'button-green button-filled_circle',
             events: {
                 click: (e) => {
-                    e?.preventDefault();
-                    const message = that.children.messageInput.inputValue;
+                    e!.preventDefault();
+                    const message = this.children.messageInput.inputValue;
                     MessagesController.sendMessage(this.props.id, message);
+                    setTimeout(()=>this.drawMessages(), 200);
                     // @ts-ignore
                     document.getElementsByName('message')[0].value = '';
                 }
@@ -52,23 +61,22 @@ export class Dialog extends Component {
             label: '⋮',
             class: '',
             events: {
-                click: () => {
+                click: async () => {
                     const container = document.getElementById('dialog-space');
-                    ChatController.getUsers({id: this.props.id}).
-                    then(() => {
-                        console.log(store.getState().chat, this.props.name)
-                        const settings = new ChatSettings({
-                            name: this.props.name,
-                            users: store.getState().chat ? store.getState().chat!.users : [
-                                {name: 'test', id: 1},
-                                {name: 'tesrr', id: 2}
-                            ],
-                            id: this.props.id
-                        })
-                        if (container) {
-                            container.appendChild(settings.getContent());
-                        }
+                    const users = await ChatController.getUsersforChat({id: this.props.id})
+                    console.log(users, this.props.name)
+                    const settings = new ChatSettings({
+                        name: this.props.name,
+                        users: users ? users : [
+                            {name: 'test', id: 1},
+                            {name: 'tesrr', id: 2}
+                        ],
+                        img: this.props.img ? 'https://ya-praktikum.tech/api/v2/resources/' + this.props.img : '',
+                        id: this.props.id
                     })
+                    if (container) {
+                        container.appendChild(settings.getContent());
+                    }
                 }
             }
         })
@@ -82,28 +90,33 @@ export class Dialog extends Component {
     }
 
     private drawMessages() {
-        this.props.messages = store.getState().messages![this.props.id]
-        if (this.props.messages && this.props.messages.length > 0) {
-            const userId = store.getState().user!.data!.id;
-            this.props.messages.forEach((message: any) => {
-                if (userId === message.user_id) {
-                    const temp = new RightMessage({
-                        text: message.content,
-                        time: message.time.substring(11, 16)
-                    }).getContent();
+        this.children.messageContainer.getContent().innerHTML = '';
+        if (store.getState().messages) {
+            this.props.messages = store.getState().messages![this.props.id]
+            if (this.props.messages && this.props.messages.length > 0) {
+                const userId = store.getState().user!.data!.id;
+                this.props.messages.forEach((message: any) => {
+                    if (userId === message.user_id) {
+                        const temp = new RightMessage({
+                            text: message.content,
+                            time: message.time.substring(11, 16)
+                        }).getContent();
 
-                    this.children.messageContainer.getContent().appendChild(temp);
-                }
-                else {
-                    const temp = new LeftMessage({
-                        text: message.content,
-                        time: message.time.substring(11, 16)
-                    }).getContent();
+                        this.children.messageContainer.getContent().appendChild(temp);
+                    }
+                    else {
+                        const temp = new LeftMessage({
+                            text: message.content,
+                            time: message.time.substring(11, 16)
+                        }).getContent();
 
-                    this.children.messageContainer.getContent().appendChild(temp);
-                }
-            })
+                        this.children.messageContainer.getContent().appendChild(temp);
+                    }
+                })
+            }
+
         }
+
     }
     render() {
         return this.compile(template, this.props);

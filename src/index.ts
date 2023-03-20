@@ -43,5 +43,5 @@ window.addEventListener("DOMContentLoaded", async () => {
             Router.start()
             Router.go(Routes.entrance)
         }
-    } catch (e) { }
+    } catch (e) { console.log(e) }
 })

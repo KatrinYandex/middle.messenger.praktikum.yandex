@@ -13,8 +13,14 @@ export class ChangeData extends Component {
         super('div', props);
     }
 
+    protected afterCompile() {
+
+    }
+
     init() {
         const that = this;
+
+        this.props.avatar = 'https://ya-praktikum.tech/api/v2/resources/' + this.props.avatar;
 
         this.children.saveButton = new Button({
             label: 'Сохранить',
@@ -30,13 +36,6 @@ export class ChangeData extends Component {
                     const secondName = that.children.secondNameInput;
                     const nickName = that.children.nickNameInput;
                     const phone = that.children.phoneInput;
-                    // const formElement = document.querySelector('form');
-                    const avatar = document.querySelector('#avatar')
-                    let formData = new FormData()
-                    if ((avatar as HTMLInputElement).files){
-                        formData.append('avatar', (avatar as HTMLInputElement).files![0]);
-                        await UserController.avatar(formData);
-                    }
 
                     const emailCheck = checkErrorProfile(email, 'email');
                     const loginCheck = checkErrorProfile(login, 'login');
@@ -44,6 +43,14 @@ export class ChangeData extends Component {
                     const secondNameCheck = checkErrorProfile(secondName, 'name');
                     // const nickNameCheck = checkErrorProfile(nickName, 'login');
                     const phoneCheck = checkErrorProfile(phone, 'phone');
+
+                    const avatar = document.querySelector('#avatar')
+                    let formData = new FormData()
+                    if ((avatar as HTMLInputElement).files){
+                        formData.append('avatar', (avatar as HTMLInputElement).files![0]);
+                        const newAvatar = await UserController.avatar(formData);
+                        console.log(newAvatar)
+                    }
 
                     if (emailCheck && loginCheck && firstNameCheck && secondNameCheck && phoneCheck) {
                         UserController.profile({

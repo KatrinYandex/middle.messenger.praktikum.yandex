@@ -3,8 +3,7 @@
         <div class="left__info">
             <div class="info__main">
                 <div class="info__profile">
-                    <div class="profile__photo">
-                        <img src="{{ src }}">
+                    <div class="profile__photo" style="background-image: url(https://ya-praktikum.tech/api/v2/resources/{{ user.avatar }}); background-size: 50px 50px;">
                     </div>
                     {{{ profileLabel }}}
                    </div>
@@ -15,6 +14,6 @@
         {{{ dialogContainer }}}
     </div>
     <div class="messenger-view__right" id="dialog-space">
-        {{{ messenger }}}
+        {{{ messengerContainer }}}
     </div>
 </div>
