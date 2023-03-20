@@ -13,6 +13,8 @@ class Profile extends Component {
     }
 
     init() {
+        console.log(this.props)
+        this.props.avatar = 'https://ya-praktikum.tech/api/v2/resources/' + this.props.avatar;
         this.children.changeDataButton = new Button({
             label: 'Изменить данные',
             type: 'button',

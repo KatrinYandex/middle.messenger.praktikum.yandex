@@ -40,8 +40,11 @@ class UserController {
 
     async avatar(data: FormData) {
         try {
-            await this.api.avatar(data);
-            Router.go('/');
+            const result = await this.api.avatar(data);
+            if (result.status === 200) {
+                return JSON.parse(result.response).avatar;
+            }
+            // Router.go('/');
         } catch (e) {
             store.set('user.error', e.message);
         }

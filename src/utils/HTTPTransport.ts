@@ -71,6 +71,7 @@ export default class HTTPTransport {
                 xhr.open(options.method, url);
             }
 
+            console.log(data)
             if (headers) {
                 Object.keys(headers).forEach((key) => {
                     xhr.setRequestHeader(key, headers[key]);
@@ -79,6 +80,7 @@ export default class HTTPTransport {
             else if (data instanceof FormData) {
                 console.log(data.get('avatar'))
             }
+            else if (data && data.avatar && data.avatar instanceof FormData){}
             else {
                 xhr.setRequestHeader('Content-Type', 'application/json');
             }

@@ -29,6 +29,11 @@ export default class ChatAPI extends BaseAPI {
         return this.http.delete('/', {data: data});
     }
 
+
+    avatar( data: FormData) {
+        return this.http.put('/avatar', {data: data});
+    }
+
     getToken( data: {chatId: any}) {
         return this.http.post(`/token/${data.chatId}`);
     }

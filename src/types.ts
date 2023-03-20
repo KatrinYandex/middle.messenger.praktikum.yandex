@@ -75,6 +75,7 @@ export interface State {
         message?: string
     };
     chats?: Chat[];
+    currentChat: any;
     chat?: {
         users?: UserChat[]
     },

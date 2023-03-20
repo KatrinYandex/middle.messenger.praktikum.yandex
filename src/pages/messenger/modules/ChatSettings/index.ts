@@ -7,11 +7,13 @@ import Router from "../../../../utils/Router";
 import UserController from "../../../../controllers/UserController";
 import {Container} from "../../../../components/Container";
 import {Member} from "../../../../components/Member";
+import store from "../../../../utils/Store";
 // import {Member} from "../../../../components/Member";
 
 interface ChatSettingsProps {
     name: string,
     id: any,
+    img: string,
     users?: Record<string, any>[]
 }
 export class ChatSettings extends Component {
@@ -26,20 +28,27 @@ export class ChatSettings extends Component {
             type: 'submit',
             class: 'button-green button-filled-bordered',
             events: {
-                click: () => {
+                click: async () => {
+                    const avatar = document.querySelector('#avatar')
+                    let formData = new FormData()
+                    if ((avatar as HTMLInputElement).files){
+                        formData.append('avatar', (avatar as HTMLInputElement).files![0]);
+                        formData.append('chatId', store.getState().currentChat);
+                        await ChatController.avatar(formData);
+                    }
+
                     if (this.props.id === '') {
                         const title = that.children.chatNameInput.inputValue;
                         ChatController.create(title);
+
+                        return
                     }
 
-                    // const users = this.children.memberContainer.getContent();
-                    // console.log(users)
-                    // // @ts-ignore
-                    // for (const child of users.children) {
-                    //     console.log(child.id)
-                    // }
+                    const settings = document.getElementById('chat-settings');
+                    if (settings) {
+                        settings.remove()
+                    }
 
-                    Router.go('/messenger')
                 }
             }
         })
@@ -55,9 +64,6 @@ export class ChatSettings extends Component {
                     }
                 }
             }
-        })
-        this.children.member = new Member({
-            name: '2222', id: 1, chatId: this.id
         })
 
         if (this.props.id !== '') {
@@ -95,6 +101,8 @@ export class ChatSettings extends Component {
                 events: {
                     change: async () => {
                         const user = await UserController.search({login: 'Amirika18'});
+
+                        console.log(user)
                         if (user.length > 0) {
                             const addUser = {id: user[0].id, name: user[0].first_name};
                             that.children.memberContainer.getContent().appendChild(
@@ -106,9 +114,7 @@ export class ChatSettings extends Component {
                             )
                             ChatController.addUser({users: [addUser.id], chatId: this.props.id})
                         }
-                        else {
-                            that.children.memberContainer.getContent().appendChild(that.children.member.getContent())
-                        }
+                        else {}
                     }
                 }
             })
