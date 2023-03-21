@@ -29,8 +29,6 @@ window.addEventListener("DOMContentLoaded", async () => {
         .use(Routes.changePassword, ChangePassword)
         .use(Routes.profile, ProfilePage)
 
-    switch (window.location.pathname) {}
-
     try {
         await AuthController.user()
         if (store.getState().user!.data!.id) {
@@ -45,3 +43,4 @@ window.addEventListener("DOMContentLoaded", async () => {
         }
     } catch (e) { console.log(e) }
 })
+

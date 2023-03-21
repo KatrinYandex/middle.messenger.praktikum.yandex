@@ -69,9 +69,9 @@ export class DialogPage extends Component {
                     this.children.dialogContainer.getContent().appendChild(new DialogItem({
                         img: chat.avatar,
                         id: chat.id,
-                        date: chat.last_message ? chat.last_message.time.substring(11, 16) : '00:00',
+                        date: chat.last_message ? chat.last_message.time.substring(11, 16) : '',
                         name_message: chat.title ? chat.title : (chat.last_message ? chat.last_message.user.first_name: chat.title),
-                        message: chat.last_message ? chat.last_message.user.first_name + ': ' + chat.last_message.content : 'someone',
+                        message: chat.last_message ? chat.last_message.user.first_name + ': ' + chat.last_message.content : '',
                         count: chat.unread_count,
                         style: chat.unread_count === 0 ? 'message__count-0' : 'message__count-1',
                         events: {
