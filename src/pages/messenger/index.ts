@@ -1,6 +1,5 @@
 import Component from "../../utils/Component";
 import template from "./messenger-view.hbs";
-// import {DialogItem} from "../../components/DialogItem";
 import {Input} from "../../components/Input";
 import {ClickableLabel} from "../../components/ClickableLabel";
 import {ChatSettings} from "./modules/ChatSettings";
@@ -34,35 +33,9 @@ export class DialogPage extends Component {
     constructor(props: DialogProps) {
         super('div', props);
     }
-
-    init() {
-        this.children.profileLabel = new ClickableLabel({
-            label: this.props.user ? this.props.user.first_name : '',
-            class: 'profile__name',
-            events: {
-                click: () => {
-                    Router.go('/profile')
-                }
-            }
-        })
-        this.children.createChatLabel = new ClickableLabel({
-            label: 'Создать чат',
-            class: 'info__create-chat',
-            events: {
-                click: () => {
-                    openSettings('');
-                }
-            }
-        })
-
-        this.children.infoInput = new Input({
-            class: 'info__search',
-            name: 'search',
-            placeholder: 'Поиск...',
-            value : ''
-        })
-
-        this.children.dialogContainer = new Container();
+    // @ts-ignore
+    protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+        this.children.dialogContainer.getContent().innerHTML = '';
         if (this.props.chats && this.props.chats.length > 0 && store.getState().chats && store.getState().chats!.length > 1) {
             if (Array.isArray(this.props.chats)) {
                 this.props.chats.forEach((chat: Chat) => {
@@ -110,6 +83,40 @@ export class DialogPage extends Component {
                 }).getContent())
             }
         }
+        return true
+    }
+
+    drawDialogs() {
+
+    }
+    init() {
+        this.children.profileLabel = new ClickableLabel({
+            label: this.props.user ? this.props.user.first_name : '',
+            class: 'profile__name',
+            events: {
+                click: () => {
+                    Router.go('/profile')
+                }
+            }
+        })
+        this.children.createChatLabel = new ClickableLabel({
+            label: 'Создать чат',
+            class: 'info__create-chat',
+            events: {
+                click: () => {
+                    openSettings('');
+                }
+            }
+        })
+
+        this.children.infoInput = new Input({
+            class: 'info__search',
+            name: 'search',
+            placeholder: 'Поиск...',
+            value : ''
+        })
+
+        this.children.dialogContainer = new Container();
         this.dispatchComponentDidMount()
     }
 

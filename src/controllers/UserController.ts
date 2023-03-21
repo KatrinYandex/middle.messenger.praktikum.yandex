@@ -54,7 +54,6 @@ class UserController {
         try {
             const result = await this.api.search(data);
             if ((result as any).status === 200) {
-                console.log(JSON.parse((result as any).response))
                 return JSON.parse((result as any).response)
             }
         } catch (e) {}

@@ -48,7 +48,6 @@ export class ChatSettings extends Component {
                     if (settings) {
                         settings.remove()
                     }
-
                 }
             }
         })
@@ -102,7 +101,6 @@ export class ChatSettings extends Component {
                     change: async () => {
                         const user = await UserController.search({login: 'Amirika18'});
 
-                        console.log(user)
                         if (user.length > 0) {
                             const addUser = {id: user[0].id, name: user[0].first_name};
                             that.children.memberContainer.getContent().appendChild(
