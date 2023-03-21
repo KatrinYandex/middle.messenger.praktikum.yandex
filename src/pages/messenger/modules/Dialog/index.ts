@@ -50,10 +50,12 @@ export class Dialog extends Component {
                 click: (e) => {
                     e!.preventDefault();
                     const message = this.children.messageInput.inputValue;
-                    MessagesController.sendMessage(this.props.id, message);
-                    setTimeout(()=>this.drawMessages(), 200);
-                    // @ts-ignore
-                    document.getElementsByName('message')[0].value = '';
+                    if (message !== '') {
+                        MessagesController.sendMessage(this.props.id, message);
+                        setTimeout(()=>this.drawMessages(), 200);
+                        // @ts-ignore
+                        document.getElementsByName('message')[0].value = '';
+                    }
                 }
             }
         })
@@ -64,7 +66,7 @@ export class Dialog extends Component {
                 click: async () => {
                     const container = document.getElementById('dialog-space');
                     const users = await ChatController.getUsersforChat({id: this.props.id})
-                    console.log(users, this.props.name)
+
                     const settings = new ChatSettings({
                         name: this.props.name,
                         users: users ? users : [

@@ -61,9 +61,7 @@ export class Registration extends Component {
                             password: password.inputValue,
                             phone: phone.inputValue
                         }).then(() => {
-                            if (store.getState().user && store.getState().user!.data) {
-                                console.log('good')
-                            }
+                            if (store.getState().user && store.getState().user!.data) {                            }
                             else (console.log('Error, user data not found'));
                         })
                     }

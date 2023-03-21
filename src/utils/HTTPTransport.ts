@@ -71,14 +71,12 @@ export default class HTTPTransport {
                 xhr.open(options.method, url);
             }
 
-            console.log(data)
             if (headers) {
                 Object.keys(headers).forEach((key) => {
                     xhr.setRequestHeader(key, headers[key]);
                 })
             }
             else if (data instanceof FormData) {
-                console.log(data.get('avatar'))
             }
             else if (data && data.avatar && data.avatar instanceof FormData){}
             else {
@@ -92,7 +90,6 @@ export default class HTTPTransport {
                 xhr.send();
             }
             else if (data instanceof FormData) {
-                console.log(data.get('avatar'))
                 xhr.send(data)
             }
             else {
