@@ -4,21 +4,30 @@ import template from "./change-data.hbs";
 import {ProfileData} from "../../../../types";
 import {Input} from "../../../../components/Input";
 import {checkErrorProfile} from "../../../../utils/errors";
+import {withStore} from "../../../../utils/Store";
+import Router from "../../../../utils/Router";
+import UserController from "../../../../controllers/UserController";
 
 export class ChangeData extends Component {
     constructor(props: ProfileData) {
         super('div', props);
     }
 
+    protected afterCompile() {
+
+    }
+
     init() {
         const that = this;
+
+        this.props.avatar = 'https://ya-praktikum.tech/api/v2/resources/' + this.props.avatar;
 
         this.children.saveButton = new Button({
             label: 'Сохранить',
             type: 'submit',
             class: 'button-green button-filled-bordered',
             events: {
-                click: (event) => {
+                click: async (event) => {
                     event!.preventDefault();
 
                     const email = that.children.emailInput;
@@ -32,13 +41,38 @@ export class ChangeData extends Component {
                     const loginCheck = checkErrorProfile(login, 'login');
                     const firstNameCheck = checkErrorProfile(firstName, 'name');
                     const secondNameCheck = checkErrorProfile(secondName, 'name');
-                    const nickNameCheck = checkErrorProfile(nickName, 'login');
+                    // const nickNameCheck = checkErrorProfile(nickName, 'login');
                     const phoneCheck = checkErrorProfile(phone, 'phone');
 
-                    if (emailCheck && loginCheck && firstNameCheck && secondNameCheck && nickNameCheck && phoneCheck) {
-                        console.log(email.inputValue, login.inputValue, firstName.inputValue, secondName.inputValue,
-                            nickName.inputValue, phone.inputValue);
+                    const avatar = document.querySelector('#avatar')
+                    let formData = new FormData()
+                    if ((avatar as HTMLInputElement).files){
+                        formData.append('avatar', (avatar as HTMLInputElement).files![0]);
+                        const newAvatar = await UserController.avatar(formData);
+                        console.log(newAvatar)
                     }
+
+                    if (emailCheck && loginCheck && firstNameCheck && secondNameCheck && phoneCheck) {
+                        UserController.profile({
+                            first_name: firstName.inputValue,
+                            second_name: secondName.inputValue,
+                            display_name: nickName.inputValue ? nickName.inputValue : firstName.inputValue,
+                            login: login.inputValue,
+                            email: email.inputValue,
+                            phone: phone.inputValue
+                        })
+                    }
+                }
+            }
+        })
+        this.children.backButton = new Button({
+            label: 'Назад',
+            type: 'button',
+            class: 'button-white button-empty-bordered',
+            events: {
+                click: (event) => {
+                    event!.preventDefault();
+                    Router.back();
                 }
             }
         })
@@ -129,8 +163,8 @@ export class ChangeData extends Component {
                     }
                 },
                 blur () {
-                    const nickNameInput = that.children.nickNameInput;
-                    checkErrorProfile(nickNameInput, 'login');
+                    // const nickNameInput = that.children.nickNameInput;
+                    // checkErrorProfile(nickNameInput, 'login');
                 }
             }
         })
@@ -158,3 +192,8 @@ export class ChangeData extends Component {
         return this.compile(template, this.props);
     }
 }
+
+export const ChangeDataPage = withStore((state) => {
+    if (state.user) return state.user.data
+    else return {}
+})(ChangeData)

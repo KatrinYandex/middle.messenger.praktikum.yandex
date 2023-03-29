@@ -3,6 +3,8 @@ import {Button} from "../../../../components/Button";
 import template from "./change-password.hbs";
 import {Input} from "../../../../components/Input";
 import {checkErrorProfile} from "../../../../utils/errors";
+import Router from "../../../../utils/Router";
+import UserController from "../../../../controllers/UserController";
 
 export class ChangePassword extends Component {
     constructor() {
@@ -28,8 +30,20 @@ export class ChangePassword extends Component {
                     const newPasswordCheck = checkErrorProfile(newPassword, 'password');
 
                     if (repeatPasswordCheck && oldPasswordCheck && newPasswordCheck) {
-                        console.log(oldPassword.inputValue, newPassword.inputValue, repeatPassword.inputValue)
+                        UserController.password({newPassword: newPassword.inputValue, oldPassword: oldPassword.inputValue});
                     }
+                }
+            }
+        })
+
+        this.children.backButton = new Button({
+            label: 'Назад',
+            type: 'submit',
+            class: 'button-white button-empty-bordered',
+            events: {
+                click: (event) => {
+                    event!.preventDefault();
+                    Router.back();
                 }
             }
         })

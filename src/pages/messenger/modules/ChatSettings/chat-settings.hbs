@@ -1,15 +1,17 @@
-<div class="chat-settings">
+<div class="chat-settings" id="chat-settings">
     <div class="chat-settings__box">
         <div class="chat-settings__info">
-            <div class="chat-settings__photo"></div>
+            <div class="chat-settings__photo" style="background-image: {{img}};">
+                <input class="chat-settings__edit" id="avatar" type="file" name="avatar">
+            </div>
             <div>
                 {{{ chatNameInput }}}
             </div>
         </div>
         {{{ addMemberInput }}}
-        {{{ member1 }}}
-        {{{ member2 }}}
-        {{{ member3 }}}
+        {{{ memberContainer }}}
         {{{ saveButton }}}
+        {{{ backButton }}}
+        {{{ deleteButton }}}
     </div>
 </div>

@@ -1,17 +1,16 @@
 import Component from "../../utils/Component";
 import template from "./dialog-item.hbs";
 
-interface DialogItemProps {
-    id: string,
-    src: string,
-    name_message: string,
-    date: string,
-    message: string,
+export interface DialogItemProps {
+    id: number,
+    img: string | null | undefined,
+    name_message: string | null | undefined,
+    date: string | null | undefined,
+    message: string | null | undefined,
     style: string,
     count:number,
     events: {
         click: () => void
-        //openDialog
     }
 }
 export class DialogItem extends Component {

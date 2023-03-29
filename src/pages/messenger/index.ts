@@ -1,33 +1,27 @@
 import Component from "../../utils/Component";
 import template from "./messenger-view.hbs";
-import {DialogItem} from "../../components/DialogItem";
-import {Dialog} from "./modules/Dialog";
 import {Input} from "../../components/Input";
 import {ClickableLabel} from "../../components/ClickableLabel";
-import {Profile} from "../profile";
-import {ProfileData} from "../../types";
 import {ChatSettings} from "./modules/ChatSettings";
+import store, {withStore} from "../../utils/Store";
+import Router from "../../utils/Router";
+import {Chat} from "../../types";
+import {DialogItem} from "../../components/DialogItem";
+import {Container} from "../../components/Container";
+import {Dialog} from "./modules/Dialog";
 
 interface DialogProps {
-    name: string,
-    src: string,
-    label: string
-}
-
-function openDialog(dialogName: string): void {
-    const dialog = new Dialog({
-        name: dialogName
-    })
-    console.log(dialog)
-    const element = document.querySelector("#dialog-space");
-    while (element!.firstChild) {
-        element!.removeChild(element!.firstChild);
-    }
-    element!.appendChild(dialog.element)
+    user: {
+        first_name: string,
+        avatar?: string,
+        label?: string
+    },
+    currentChat: any,
+    chats: Chat[] | any
 }
 
 function openSettings(chatName: string): void {
-    const settings = new ChatSettings({name: chatName})
+    const settings = new ChatSettings({name: chatName, id: '', img: ''})
     const element = document.querySelector("#dialog-space");
     while (element!.firstChild) {
         element!.removeChild(element!.firstChild);
@@ -35,36 +29,73 @@ function openSettings(chatName: string): void {
     element!.appendChild(settings.element)
 }
 
-function openProfile(data: ProfileData): void {
-    const profile = new Profile(data);
-    const element = document.querySelector("#main");
-    while (element!.firstChild) {
-        element!.removeChild(element!.firstChild);
-    }
-    element!.appendChild(profile.element)
-}
-
 export class DialogPage extends Component {
     constructor(props: DialogProps) {
         super('div', props);
     }
+    // @ts-ignore
+    protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+        this.children.dialogContainer.getContent().innerHTML = '';
+        if (this.props.chats && this.props.chats.length > 0 && store.getState().chats && store.getState().chats!.length > 1) {
+            if (Array.isArray(this.props.chats)) {
+                this.props.chats.forEach((chat: Chat) => {
+                    this.children.dialogContainer.getContent().appendChild(new DialogItem({
+                        img: chat.avatar,
+                        id: chat.id,
+                        date: chat.last_message ? chat.last_message.time.substring(11, 16) : '',
+                        name_message: chat.title ? chat.title : (chat.last_message ? chat.last_message.user.first_name: chat.title),
+                        message: chat.last_message ? chat.last_message.user.first_name + ': ' + chat.last_message.content : '',
+                        count: chat.unread_count,
+                        style: chat.unread_count === 0 ? 'message__count-0' : 'message__count-1',
+                        events: {
+                            click: () => {
+                                this.children.messengerContainer = new Dialog({
+                                    name: chat.title,
+                                    id: chat.id,
+                                    img: chat.avatar
+                                })
+                                store.set('currentChat', chat.id);
+                            }
+                        }
+                    }).getContent())
+                })
+            }
+            else {
+                const chat = this.props.chats
+                this.children.dialogContainer.getContent().appendChild(new DialogItem({
+                    img: chat.avatar,
+                    id: chat.id,
+                    date: chat.last_message ? chat.last_message.time.substring(11, 16) : '00:00',
+                    name_message: chat.title ? chat.title : (chat.last_message ? chat.last_message.user.first_name: chat.title),
+                    message: chat.last_message ? chat.last_message.user.first_name + ': ' + chat.last_message.content : 'someone',
+                    count: chat.unread_count,
+                    style: chat.unread_count === 0 ? 'message__count-0' : 'message__count-1',
+                    events: {
+                        click: () => {
+                            this.children.messengerContainer = new Dialog({
+                                name: chat.title,
+                                id: chat.id,
+                                img: 'chat.avatar'
+                            })
+                            store.set('currentChat', chat.id);
+                        }
+                    }
+                }).getContent())
+            }
+        }
+        return true
+    }
 
+    drawDialogs() {
+
+    }
     init() {
         this.children.profileLabel = new ClickableLabel({
-            label: this.props.name,
+            label: this.props.user ? this.props.user.first_name : '',
             class: 'profile__name',
             events: {
                 click: () => {
-                    openProfile({
-                        img: '',
-                        name: this.props.name,
-                        email: 'email',
-                        login: 'login',
-                        first_name: this.props.name,
-                        second_name: this.props.name,
-                        display_name: this.props.name,
-                        phone: 'string'
-                    });
+                    Router.go('/profile')
                 }
             }
         })
@@ -73,40 +104,11 @@ export class DialogPage extends Component {
             class: 'info__create-chat',
             events: {
                 click: () => {
-                    openSettings('Some Name');
+                    openSettings('');
                 }
             }
         })
-        this.children.dialogItem1 = new DialogItem({
-            src: '',
-            id: '1',
-            name_message: 'Юрий Вадимов',
-            date: '10:03',
-            message: 'Сообщение важное очень, зайти пж на сайт наш, глянь..',
-            count: 0,
-            style: 'message__count-0',
-            events: {
-                click: () => {
-                    openDialog('Юрий Вадимов')
-                    console.log('Зарегестрироваться')
-                }
-            }
-        })
-        this.children.dialogItem2 = new DialogItem({
-            src: '',
-            id: '1',
-            name_message: 'Юрий Вадимов',
-            date: '10:05',
-            message: 'Сообщение важное очень, зайти пж на сайт наш, глянь..',
-            count: 5,
-            style: 'message__count-1',
-            events: {
-                click: () => {
-                    openDialog('Юрий Вадимов')
-                    console.log('Зарегестрироваться')
-                }
-            }
-        })
+
         this.children.infoInput = new Input({
             class: 'info__search',
             name: 'search',
@@ -114,9 +116,17 @@ export class DialogPage extends Component {
             value : ''
         })
 
+        this.children.dialogContainer = new Container();
         this.dispatchComponentDidMount()
     }
+
     render() {
         return this.compile(template, this.props);
     }
 }
+
+export const MessengerPage = withStore((state) => {
+    if (state.user) return {user: state.user.data, chats: state.chats, currentChat: state.currentChat}
+    else return {}
+})(DialogPage)
+
