@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { set } from './Helpers';
+import {isEqual, set} from './Helpers';
 
 describe('Method set', () => {
     const path = 'path';
@@ -34,3 +34,23 @@ describe('Method set', () => {
         expect(fake).to.throw(Error);
     });
 });
+
+describe('Method isEqual', () => {
+    it('should return true if 2 objects are equal', () => {
+        const a = {key: 2};
+        const b = {key: 2};
+
+        const result = isEqual(a, b);
+
+        expect(result).to.be.eq(true);
+    })
+
+    it('should return false if 2 objects are not equal', () => {
+        const a = {key: 2};
+        const b = {key: 3};
+
+        const result = isEqual(a, b);
+
+        expect(result).to.be.eq(false);
+    })
+})
