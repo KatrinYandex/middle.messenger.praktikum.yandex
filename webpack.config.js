@@ -5,7 +5,7 @@ module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, './src/index.ts'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: '/',
         publicPath: '/dist/',
         filename: 'chat.bundle.js'
     },
@@ -47,12 +47,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, './dist'),
-        compress: true,
         port: 3000,
         historyApiFallback: true,
-        static: {
-            directory: path.join(__dirname, './dist')
-        }
     }
 };

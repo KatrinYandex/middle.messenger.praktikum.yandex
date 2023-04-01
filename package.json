@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run build && node server.js",
-    "dev": "node ./node_modules/.bin/webpack",
-    "build": "node ./node_modules/.bin/webpack",
+    "start": "npm run dev && node server.js",
+    "dev": "webpack serve",
+    "build": "webpack",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
   },
   "husky": {
