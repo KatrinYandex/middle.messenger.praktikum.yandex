@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run build && node server.js",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "dev": "node ./node_modules/.bin/webpack",
+    "build": "node ./node_modules/.bin/webpack",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
   },
   "husky": {
@@ -26,19 +26,30 @@
     "@types/proxyquire": "1.3.28",
     "@types/sinon": "10.0.13",
     "chai": "4.3.6",
+    "css-loader": "^6.7.3",
     "eslint": "8.34.0",
     "eslint-config-airbnb": "19.0.4",
+    "handlebars-template-loader": "^1.0.0",
+    "hbs-loader": "^0.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "8.0.3",
     "jsdom": "20.0.1",
     "mocha": "10.0.0",
+    "node-sass": "^8.0.0",
     "parcel": "2.7.0",
     "proxyquire": "2.1.3",
+    "sass-loader": "^13.2.2",
     "sinon": "14.0.1",
+    "style-loader": "^3.3.2",
     "stylelint": "15.2.0",
     "stylelint-config-standard": "30.0.1",
     "stylelint-config-standard-scss": "7.0.1",
+    "ts-loader": "^9.4.2",
     "ts-node": "10.9.1",
-    "typescript": "4.9.5"
+    "typescript": "^4.9.5",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.1"
   },
   "dependencies": {
     "express": "4.18.2",
