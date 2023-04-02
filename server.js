@@ -1,14 +1,14 @@
 const express = require('express');
+import fallback from 'express-history-api-fallback';
 const open = require('open');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const indexArgv = process.argv.indexOf("--port");
-// const PORT = (indexArgv > -1) ? process.argv[indexArgv + 1] : 3000;
-
-app.use(express.static(path.join(__dirname + '/dist')));
+const root = path.join(__dirname + '/dist')
+app.use(express.static(root));
+app.use(fallback('index.html', { root }))
 
 open('http://localhost:' + String(PORT));
 app.listen(PORT);
