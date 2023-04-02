@@ -1,5 +1,5 @@
 ## Ссылка на PR:
-[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/5)
+[PR](https://github.com/KatrinYandex/middle.messenger.praktikum.yandex/pull/9)
 
 ## Описание
 Разработка мессенджера для обучения на practicum.yandex.ru.
@@ -19,3 +19,6 @@
 
 ## Проект в Figma
 [Проект в Figma](https://www.figma.com/file/Vz7Va8ctSfNOXa41E8AyGc/Untitled?node-id=0%3A1&t=2Q1shLEK4BiX4xSi-1)
+
+## Проект в облаке Yandex
+[Проект в облаке Yandex](https://bbav8o5j658v5ois098q.containers.yandexcloud.net)
