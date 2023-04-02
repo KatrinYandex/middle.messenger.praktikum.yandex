@@ -5,7 +5,7 @@ module.exports = {
     mode: 'production',
     entry: path.resolve(__dirname, './src/index.ts'),
     output: {
-        path: '/',
+        path: path.join(__dirname, '/dist'),
         publicPath: '/',
         filename: 'chat.bundle.js'
     },

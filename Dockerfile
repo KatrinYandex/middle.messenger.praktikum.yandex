@@ -13,7 +13,7 @@ COPY --from=builder /var/www/app/package.json /var/www/app/yarn.lock ./
 
 RUN yarn install --production
 
-COPY --from=builder /var/www/app/ ./
+COPY --from=builder /var/www/app/dist ./dist
 COPY --from=builder /var/www/app/server.js ./
 
 EXPOSE 3000
