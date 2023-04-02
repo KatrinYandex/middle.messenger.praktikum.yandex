@@ -1,12 +1,11 @@
 import Component from './Component';
 import {BlockConstructable} from "../types";
-// import {BlockConstructable} from "../types";
 
 function isEqual(lhs: string, rhs: string): boolean {
     return lhs === rhs;
 }
 
-function render(query: string, block: Component) {
+function renderBlock(query: string, block: Component) {
     const root = document.querySelector(query);
     if (root === null) {
         throw new Error(`root not found by selector "${query}"`);
@@ -37,7 +36,7 @@ class Route {
     render() {
         if (!this.block) {
             this.block = new this.blockClass('');
-            render(this.query, this.block);
+            renderBlock(this.query, this.block);
             return;
         }
     }
